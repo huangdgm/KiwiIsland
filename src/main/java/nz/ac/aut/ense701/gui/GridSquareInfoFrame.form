@@ -42,23 +42,19 @@
                       </Group>
                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="jLabelImage" min="-2" pref="320" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButtonUse" linkSize="2" min="-2" pref="94" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButtonDrop" linkSize="2" min="-2" pref="98" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButtonCount" linkSize="2" min="-2" pref="104" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jButtonCollect" linkSize="2" min="-2" pref="116" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jButtonUse" linkSize="8" min="-2" pref="97" max="-2" attributes="0"/>
+                              <Component id="jButtonCollect" linkSize="8" min="-2" pref="97" max="-2" attributes="0"/>
+                              <Component id="jButtonCount" linkSize="8" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
-                              <Component id="jLabelImage" min="-2" pref="179" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jButtonDrop" linkSize="8" alignment="1" min="-2" pref="97" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -70,17 +66,22 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanelTitleAndImage" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabelImage" pref="132" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanelDescription" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="jButtonUse" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonDrop" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonCount" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonCollect" alignment="2" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabelImage" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jButtonUse" linkSize="7" min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonDrop" linkSize="7" min="-2" pref="50" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonCount" linkSize="7" min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonCollect" linkSize="7" min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanelDescription" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -220,26 +221,41 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButtonUse">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Use"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonDrop">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Drop"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCount">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Count"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCollect">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="SansSerif" size="18" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Collect"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelImage">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/kiwi.png"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
             <LineBorder/>
