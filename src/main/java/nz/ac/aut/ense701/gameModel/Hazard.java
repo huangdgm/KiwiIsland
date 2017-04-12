@@ -19,6 +19,7 @@ public class Hazard extends Occupant {
      * @param name of hazard.
      * @param description a more detailed description of hazard
      * @param impact on player
+     * @param wikiDescription an article describing of hazard
      */
     public Hazard(Position position, String name, String description, double impact, String wikiDescription) {
         

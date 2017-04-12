@@ -1,5 +1,6 @@
 package nz.ac.aut.ense701.gameModel;
 
+import java.util.Scanner;
 import org.junit.Test;
 
 /**
@@ -426,10 +427,24 @@ public class GameTest extends junit.framework.TestCase
         assertEquals("Wrong count", game.getKiwiCount(), 1);
     }
 
-/**
- * Private helper methods
- */
-    
+    @Test
+    public void testScanWikiDescription() {
+        String wikiDescription = "The first line of the wiki description.\n" +
+                                "The second line of the wiki description.\n" +
+                                "The last line of the wiki description.[The end]\n";
+
+        Scanner input = new Scanner(wikiDescription);
+
+        String result = " first line of the wiki description.\n\n" +
+                                "The second line of the wiki description.\n\n" +
+                                "The last line of the wiki description.[The end]";
+        
+        assertEquals(game.scanWikiDescription(input), result);
+    }
+
+    /**
+     * Private helper methods
+     */
     private boolean trapAllPredators()
     {
         //Firstly player needs a trap

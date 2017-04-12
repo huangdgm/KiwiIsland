@@ -19,6 +19,7 @@ public abstract class Occupant
      * @param position the position of the occupant
      * @param name the name of the occupant
      * @param description a longer description
+     * @param wikiDescription an article describing the occupant
      */
     public Occupant(Position position, String name, String description, String wikiDescription) 
     {

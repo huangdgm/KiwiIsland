@@ -106,7 +106,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
                 .addComponent(jRadioButtonOccupant2)
                 .addGap(60, 60, 60)
                 .addComponent(jRadioButtonOccupant3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelTitleAndImageLayout.setVerticalGroup(
             jPanelTitleAndImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,6 +124,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
+        jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanelDescriptionLayout = new javax.swing.GroupLayout(jPanelDescription);
@@ -174,7 +175,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(179, 179, 179)
                                 .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(66, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonCollect, jButtonCount, jButtonDrop, jButtonUse});
@@ -265,6 +266,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+    
     private Game game;
     private int row, column;
     private int numOfOccupant = 0;

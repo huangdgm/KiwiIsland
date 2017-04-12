@@ -766,7 +766,7 @@ public class Game {
         }
     }
     
-    private String scanWikiDescription(Scanner input) {
+    public String scanWikiDescription(Scanner input) {
         // Read from the first line of the wiki description
         String nextLine = input.nextLine();
         // Initialize the wiki description string
@@ -777,14 +777,15 @@ public class Game {
         } else {
             do {                
                 wikiDescription += nextLine;
+                wikiDescription += "\n\n";
                 nextLine = input.nextLine();
             } while (!nextLine.endsWith("[The end]"));
             
             wikiDescription += nextLine;
         }
         
-        // Remove the leading comma of the wiki description
-        return wikiDescription.substring(1);
+        // Remove the leading comma and the two new line character of the wiki description
+        return wikiDescription.substring(3);
     }
     
     private Island island;
