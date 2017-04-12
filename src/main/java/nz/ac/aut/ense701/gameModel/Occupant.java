@@ -11,7 +11,8 @@ public abstract class Occupant
 {
     private Position position;
     private final String   name;
-    private final String   description;    
+    private final String   description;  
+    private String wikiDescription;
 
     /**
      * Construct an occupant for a known position & name.
@@ -19,11 +20,12 @@ public abstract class Occupant
      * @param name the name of the occupant
      * @param description a longer description
      */
-    public Occupant(Position position, String name, String description) 
+    public Occupant(Position position, String name, String description, String wikiDescription) 
     {
         this.position    = position;
         this.name        = name;
-        this.description = description;        
+        this.description = description;
+        this.wikiDescription = wikiDescription;
     }
     
     /**
@@ -84,6 +86,20 @@ public abstract class Occupant
      * @return the string representation of the occupant
      */
     public abstract String getStringRepresentation();
+
+    /**
+     * @return the wikiDescription
+     */
+    public String getWikiDescription() {
+        return wikiDescription;
+    }
+
+    /**
+     * @param wikiDescription the wikiDescription to set
+     */
+    public void setWikiDescription(String wikiDescription) {
+        this.wikiDescription = wikiDescription;
+    }
 
 
 }

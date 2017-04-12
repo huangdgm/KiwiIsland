@@ -33,9 +33,9 @@ public class HazardTest extends junit.framework.TestCase
     {
         island = new Island(5,5);
         position = new Position(island, 4,4);
-        fatal = new Hazard(position, "Hole", "A very deep hole",  1.0);
+        fatal = new Hazard(position, "Hole", "A very deep hole",  1.0,"A wiki description");
         position2 = new Position(island, 1,3);
-        nonFatal = new Hazard(position2, "Cliff", "A small cliff", 0.5);
+        nonFatal = new Hazard(position2, "Cliff", "A small cliff", 0.5,"A wiki description");
     }
 
     /**
@@ -66,7 +66,7 @@ public class HazardTest extends junit.framework.TestCase
     
     @Test
     public void testIsBreakTrap(){
-        Hazard trapBreak = new Hazard(position2, "Broken trap", "Your trap breaks", 0.0);
+        Hazard trapBreak = new Hazard(position2, "Broken trap", "Your trap breaks", 0.0,"A wiki description");
         
         assertTrue("Shoyuld be trap break hazard", trapBreak.isBreakTrap());
     }

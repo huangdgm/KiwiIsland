@@ -1,6 +1,7 @@
 package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
+import javax.swing.JFrame;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import nz.ac.aut.ense701.gameModel.Game;
@@ -94,8 +95,21 @@ public class GridSquarePanel extends javax.swing.JPanel
         lblText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblText.setText("content");
         lblText.setOpaque(true);
+        lblText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblTextMouseClicked(evt);
+            }
+        });
         add(lblText, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTextMouseClicked
+        if(game.isVisible(row, column)) {
+            GridSquareInfoFrame gridSquareInfoFrame = new GridSquareInfoFrame(game, row, column);
+            gridSquareInfoFrame.setVisible(true);
+        }
+    }//GEN-LAST:event_lblTextMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblText;
     // End of variables declaration//GEN-END:variables

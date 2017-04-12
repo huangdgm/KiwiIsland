@@ -19,9 +19,9 @@ public class Fauna extends Occupant
      * @param name the name of the kiwi
      * @param description a longer description of the kiwi
      */
-    public Fauna(Position pos, String name, String description) 
+    public Fauna(Position pos, String name, String description, String wikiDescription) 
     {
-        super(pos, name, description);
+        super(pos, name, description, wikiDescription);
     } 
     
  
