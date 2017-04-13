@@ -2,6 +2,7 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import nz.ac.aut.ense701.gameModel.Game;
@@ -118,6 +119,8 @@ public class GridSquarePanel extends javax.swing.JPanel {
         if ((game.isVisible(row, column) || game.hasPlayer(row, column)) && island.getOccupants(position).length != 0) {
             GridSquareInfoFrame gridSquareInfoFrame = new GridSquareInfoFrame(game, row, column);
             gridSquareInfoFrame.setVisible(true);
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.setEnabled(false);
         }
     }//GEN-LAST:event_lblTextMouseClicked
 
