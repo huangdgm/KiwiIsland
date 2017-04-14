@@ -53,11 +53,9 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         jPanelDescription = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaWikiDescription = new javax.swing.JTextArea();
-        jButtonUse = new javax.swing.JButton();
-        jButtonDrop = new javax.swing.JButton();
+        jLabelImage = new javax.swing.JLabel();
         jButtonCount = new javax.swing.JButton();
         jButtonCollect = new javax.swing.JButton();
-        jLabelImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Occupant Information");
@@ -111,22 +109,25 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         jPanelTitleAndImage.setLayout(jPanelTitleAndImageLayout);
         jPanelTitleAndImageLayout.setHorizontalGroup(
             jPanelTitleAndImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTitleAndImageLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jRadioButtonOccupant1)
-                .addGap(66, 66, 66)
-                .addComponent(jRadioButtonOccupant2)
-                .addGap(60, 60, 60)
+            .addGroup(jPanelTitleAndImageLayout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jRadioButtonOccupant1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(jRadioButtonOccupant2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addComponent(jRadioButtonOccupant3)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanelTitleAndImageLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRadioButtonOccupant1, jRadioButtonOccupant2, jRadioButtonOccupant3});
+
         jPanelTitleAndImageLayout.setVerticalGroup(
             jPanelTitleAndImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTitleAndImageLayout.createSequentialGroup()
                 .addGroup(jPanelTitleAndImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButtonOccupant1)
                     .addComponent(jRadioButtonOccupant2)
-                    .addComponent(jRadioButtonOccupant3))
+                    .addComponent(jRadioButtonOccupant3)
+                    .addComponent(jRadioButtonOccupant1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -139,30 +140,9 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         jTextAreaWikiDescription.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextAreaWikiDescription);
 
-        javax.swing.GroupLayout jPanelDescriptionLayout = new javax.swing.GroupLayout(jPanelDescription);
-        jPanelDescription.setLayout(jPanelDescriptionLayout);
-        jPanelDescriptionLayout.setHorizontalGroup(
-            jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-        );
-        jPanelDescriptionLayout.setVerticalGroup(
-            jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
-        );
+        jLabelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButtonUse.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jButtonUse.setText("Use");
-        if(!game.getIsland().hasPlayer(position)) {
-            jButtonUse.setEnabled(false);
-        }
-
-        jButtonDrop.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jButtonDrop.setText("Drop");
-        if(!game.getIsland().hasPlayer(position)) {
-            jButtonDrop.setEnabled(false);
-        }
-
-        jButtonCount.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButtonCount.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonCount.setText("Count");
         if(!game.getIsland().hasPlayer(position)) {
             jButtonCount.setEnabled(false);
@@ -173,7 +153,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonCollect.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButtonCollect.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jButtonCollect.setText("Collect");
         if(!game.getIsland().hasPlayer(position)) {
             jButtonCollect.setEnabled(false);
@@ -184,7 +164,39 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        javax.swing.GroupLayout jPanelDescriptionLayout = new javax.swing.GroupLayout(jPanelDescription);
+        jPanelDescription.setLayout(jPanelDescriptionLayout);
+        jPanelDescriptionLayout.setHorizontalGroup(
+            jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDescriptionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDescriptionLayout.createSequentialGroup()
+                        .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
+                    .addGroup(jPanelDescriptionLayout.createSequentialGroup()
+                        .addComponent(jButtonCount, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonCollect, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+
+        jPanelDescriptionLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonCollect, jButtonCount});
+
+        jPanelDescriptionLayout.setVerticalGroup(
+            jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelDescriptionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCount)
+                    .addComponent(jButtonCollect))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,42 +205,19 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanelTitleAndImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonUse, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCount, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCollect, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13))))
+                        .addComponent(jPanelDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanelTitleAndImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonCollect, jButtonCount, jButtonDrop, jButtonUse});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelTitleAndImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonUse)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonDrop)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                        .addComponent(jButtonCount)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonCollect)))
+                .addComponent(jPanelTitleAndImage, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -444,8 +433,6 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupSelectOccupant;
     private javax.swing.JButton jButtonCollect;
     private javax.swing.JButton jButtonCount;
-    private javax.swing.JButton jButtonDrop;
-    private javax.swing.JButton jButtonUse;
     private javax.swing.JLabel jLabelImage;
     private javax.swing.JPanel jPanelDescription;
     private javax.swing.JPanel jPanelTitleAndImage;
