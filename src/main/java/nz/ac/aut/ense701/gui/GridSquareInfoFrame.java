@@ -17,6 +17,7 @@ import javax.swing.SwingUtilities;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.Occupant;
 import nz.ac.aut.ense701.gameModel.Position;
+import nz.ac.aut.ense701.main.Main;
 
 /**
  * This class represents the visual frame from where the occupants can be
@@ -67,6 +68,11 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         setFocusable(false);
         setLocation(new java.awt.Point(400, 200));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanelTitleAndImage.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Occupant"));
 
@@ -385,6 +391,10 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButtonOpenWikiActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        Main.gui.setEnabled(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * This method is used for set the icon for the jLabel, which is displayed

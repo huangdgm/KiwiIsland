@@ -2,6 +2,7 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
 import java.awt.Dialog;
+import java.util.Arrays;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -70,6 +71,11 @@ public class GridSquarePanel extends javax.swing.JPanel {
         if (squareExplored || squareVisible) {
             // Set the text of the JLabel according to the occupant
             lblText.setText(game.getOccupantStringRepresentation(row, column));
+            // Set the tool tip text for the GridSquarePanel
+            if(game.getIsland().getOccupants(new Position(game.getIsland(), row, column)).length != 0) {
+                lblText.setToolTipText(Arrays.toString(game.getIsland().getOccupants(new Position(game.getIsland(), row, column))));
+            }
+            
             // Set the colour. 
             if (squareVisible && !squareExplored) {
                 // When explored the colour is brighter
@@ -122,15 +128,9 @@ public class GridSquarePanel extends javax.swing.JPanel {
         if ((game.isVisible(row, column) || game.hasPlayer(row, column)) && island.getOccupants(position).length != 0) {
             GridSquareInfoFrame gridSquareInfoFrame = new GridSquareInfoFrame(game, row, column);
             gridSquareInfoFrame.setVisible(true);
-            //JOptionPane.showMessageDialog((JFrame) SwingUtilities.getWindowAncestor(this), gridSquareInfoFrame);
-            //JOptionPane.showMessageDialog((JFrame)this.getParent(), gridSquareInfoFrame);
-            //JDialog jd = new JDialog
-            //JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            //topFrame.setEnabled(false);
-            //JDialog d2 = new JDialog((JFrame)this.getParent());
-            //d2.add(gridSquareInfoFrame.getRootPane());
-            //JDialog d3 = new JDialog(d2,"",Dialog.ModalityType.APPLICATION_MODAL);
-            //d3.setVisible(true);
+
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.setEnabled(false);
         }
     }//GEN-LAST:event_lblTextMouseClicked
 
