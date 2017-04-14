@@ -1,7 +1,10 @@
 package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
+import java.awt.Dialog;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -119,8 +122,15 @@ public class GridSquarePanel extends javax.swing.JPanel {
         if ((game.isVisible(row, column) || game.hasPlayer(row, column)) && island.getOccupants(position).length != 0) {
             GridSquareInfoFrame gridSquareInfoFrame = new GridSquareInfoFrame(game, row, column);
             gridSquareInfoFrame.setVisible(true);
-            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-            topFrame.setEnabled(false);
+            //JOptionPane.showMessageDialog((JFrame) SwingUtilities.getWindowAncestor(this), gridSquareInfoFrame);
+            //JOptionPane.showMessageDialog((JFrame)this.getParent(), gridSquareInfoFrame);
+            //JDialog jd = new JDialog
+            //JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            //topFrame.setEnabled(false);
+            //JDialog d2 = new JDialog((JFrame)this.getParent());
+            //d2.add(gridSquareInfoFrame.getRootPane());
+            //JDialog d3 = new JDialog(d2,"",Dialog.ModalityType.APPLICATION_MODAL);
+            //d3.setVisible(true);
         }
     }//GEN-LAST:event_lblTextMouseClicked
 

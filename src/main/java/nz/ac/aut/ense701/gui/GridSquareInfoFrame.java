@@ -5,7 +5,9 @@
  */
 package nz.ac.aut.ense701.gui;
 
+import java.awt.Component;
 import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -14,6 +16,8 @@ import nz.ac.aut.ense701.gameModel.Occupant;
 import nz.ac.aut.ense701.gameModel.Position;
 
 /**
+ * This class represents the visual frame from where the occupants can be
+ * displayed and the action buttons can be performed on the occupants.
  *
  * @author Administrator
  */
@@ -28,6 +32,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         this.column = column;
         this.position = new Position(game.getIsland(), row, column);
         this.numOfOccupant = game.getIsland().getOccupants(position).length;
+        this.occupants = game.getIsland().getOccupants(position);
         initComponents();
     }
 
@@ -57,12 +62,9 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Occupant Information");
         setAlwaysOnTop(true);
+        setFocusable(false);
         setLocation(new java.awt.Point(400, 200));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
+        setResizable(false);
 
         jPanelTitleAndImage.setBorder(javax.swing.BorderFactory.createTitledBorder("Select Occupant"));
 
@@ -150,15 +152,37 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
 
         jButtonUse.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonUse.setText("Use");
+        if(!game.getIsland().hasPlayer(position)) {
+            jButtonUse.setEnabled(false);
+        }
 
         jButtonDrop.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonDrop.setText("Drop");
+        if(!game.getIsland().hasPlayer(position)) {
+            jButtonDrop.setEnabled(false);
+        }
 
         jButtonCount.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonCount.setText("Count");
+        if(!game.getIsland().hasPlayer(position)) {
+            jButtonCount.setEnabled(false);
+        }
+        jButtonCount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCountActionPerformed(evt);
+            }
+        });
 
         jButtonCollect.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButtonCollect.setText("Collect");
+        if(!game.getIsland().hasPlayer(position)) {
+            jButtonCollect.setEnabled(false);
+        }
+        jButtonCollect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCollectActionPerformed(evt);
+            }
+        });
 
         jLabelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -169,23 +193,19 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelTitleAndImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jPanelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelTitleAndImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonUse, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonCollect, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jButtonCount, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                            .addComponent(jButtonDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonUse, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCount, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCollect, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13))))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonCollect, jButtonCount, jButtonDrop, jButtonUse});
@@ -202,7 +222,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
                         .addComponent(jButtonUse)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonDrop)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
                         .addComponent(jButtonCount)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonCollect)))
@@ -215,13 +235,16 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButtonOccupant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonOccupant1ActionPerformed
-        Occupant occupant = game.getIsland().getOccupants(position)[0];
+        Occupant occupant = occupants[0];
         String wikiDescription = occupant.getWikiDescription();
 
         // Set the icon for the jLabel according to the occupant type
-        setIconForJLableImage(occupant, jLabelImage);
+        setIconForJLableImage(occupant);
         // Set the text are for the jTextArea according to the occupant type
         jTextAreaWikiDescription.setText(wikiDescription);
+
+        // Disable or enable the 'collect' and the 'count' buttons.
+        updateTheButtonStatus(occupant);
     }//GEN-LAST:event_jRadioButtonOccupant1ActionPerformed
 
     private void jRadioButtonOccupant2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonOccupant2ActionPerformed
@@ -229,9 +252,12 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         String wikiDescription = occupant.getWikiDescription();
 
         // Set the icon for the jLabel according to the occupant type
-        setIconForJLableImage(occupant, jLabelImage);
+        setIconForJLableImage(occupant);
         // Set the text are for the jTextArea according to the occupant type
         jTextAreaWikiDescription.setText(wikiDescription);
+
+        // Disable or enable the 'collect' and the 'count' buttons.
+        updateTheButtonStatus(occupant);
     }//GEN-LAST:event_jRadioButtonOccupant2ActionPerformed
 
     private void jRadioButtonOccupant3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonOccupant3ActionPerformed
@@ -239,18 +265,90 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         String wikiDescription = occupant.getWikiDescription();
 
         // Set the icon for the jLabel according to the occupant type
-        setIconForJLableImage(occupant, jLabelImage);
+        setIconForJLableImage(occupant);
         // Set the text are for the jTextArea according to the occupant type
         jTextAreaWikiDescription.setText(wikiDescription);
+
+        // Disable or enable the 'collect' and the 'count' buttons.
+        updateTheButtonStatus(occupant);
     }//GEN-LAST:event_jRadioButtonOccupant3ActionPerformed
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        JFrame topFrame = (JFrame) SwingUtilities.getRoot(this);
-        topFrame.setEnabled(true);
-    }//GEN-LAST:event_formWindowClosed
+    /**
+     * This method is invoked after the collect button is pressed. In this
+     * method, the selected occupant will be collected and then the button will
+     * be disabled.
+     *
+     * @param evt The button click event
+     * @return void
+     */
+    private void jButtonCollectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCollectActionPerformed
+        switch (numOfOccupant) {
+            case 1:
+                if (jRadioButtonOccupant1.isSelected()) {
+                    if (game.collectItem(occupants[0])) {
+                        // After collecting the occupant, disable the collect button
+                        jButtonCollect.setEnabled(false);
+                    }
+                }
 
-    private void setIconForJLableImage(Occupant occupant, JLabel jLabelImage) {
-        switch(occupant.getName()){
+                break;
+            case 2:
+                if (jRadioButtonOccupant1.isSelected()) {
+                    if (game.collectItem(occupants[0])) {
+                        jButtonCollect.setEnabled(false);
+                    }
+                } else if (jRadioButtonOccupant2.isSelected()) {
+                    if (game.collectItem(occupants[1])) {
+                        jButtonCollect.setEnabled(false);
+                    }
+                }
+
+                break;
+            case 3:
+                if (jRadioButtonOccupant1.isSelected()) {
+                    if (game.collectItem(occupants[0])) {
+                        jButtonCollect.setEnabled(false);
+                    }
+                } else if (jRadioButtonOccupant2.isSelected()) {
+                    if (game.collectItem(occupants[1])) {
+                        jButtonCollect.setEnabled(false);
+                    }
+                } else if (jRadioButtonOccupant3.isSelected()) {
+                    if (game.collectItem(occupants[2])) {
+                        jButtonCollect.setEnabled(false);
+                    }
+                }
+
+                break;
+        }
+    }//GEN-LAST:event_jButtonCollectActionPerformed
+
+    /**
+     * This method is invoked after the count button is pressed. In this method,
+     * the selected occupant will be counted and then the button will be
+     * disabled.
+     *
+     * @param evt The button click event
+     * @return void
+     */
+    private void jButtonCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCountActionPerformed
+        game.countKiwi();
+        // After the kiwi was counted, disable the count button
+        jButtonCount.setEnabled(false);
+    }//GEN-LAST:event_jButtonCountActionPerformed
+
+    /**
+     * This method is used for set the icon for the jLabel, which is displayed
+     * in the GridSquareInfoFrame. In this method, the jLabel is assigned with
+     * the related image for the selected occupant. In the GridSquarInfoPanel,
+     * when one occupant is selected, the corresponding image will be displayed
+     * in the center of the window.
+     *
+     * @param occupant This specifies which image should be displayed.
+     * @return void
+     */
+    private void setIconForJLableImage(Occupant occupant) {
+        switch (occupant.getName()) {
             case "Kiwi":
                 jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi.png")));
                 break;
@@ -324,42 +422,23 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
                 jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/brokentrap.jpg")));
                 break;
         }
-    
     }
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(GridSquareInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(GridSquareInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(GridSquareInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(GridSquareInfoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new GridSquareInfoFrame().setVisible(true);
-//            }
-//        });
-//    }
+
+    /**
+     * This helper method helps disabling or enabling the buttons in the
+     * GridSquareInfoPanel. When a specific radio button is selected, the status
+     * of the buttons should reflect whether the occupants in the current grid
+     * can be collected or counted.
+     *
+     * @param occupant Which occupant is selected.
+     * @return void
+     */
+    private void updateTheButtonStatus(Occupant occupant) {
+        if (occupant != null && game.hasPlayer(row, column)) {
+            jButtonCollect.setEnabled(game.canCollect(occupant));
+            jButtonCount.setEnabled(game.canCount(occupant));
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupSelectOccupant;
@@ -376,9 +455,10 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaWikiDescription;
     // End of variables declaration//GEN-END:variables
-    
+
     private Game game;
     private int row, column;
     private int numOfOccupant = 0;
     private Position position;
+    private Occupant[] occupants;
 }
