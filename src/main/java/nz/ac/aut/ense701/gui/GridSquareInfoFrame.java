@@ -6,6 +6,9 @@
 package nz.ac.aut.ense701.gui;
 
 import java.awt.Component;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -56,6 +59,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         jLabelImage = new javax.swing.JLabel();
         jButtonCount = new javax.swing.JButton();
         jButtonCollect = new javax.swing.JButton();
+        jButtonOpenWiki = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Occupant Information");
@@ -111,16 +115,13 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             jPanelTitleAndImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTitleAndImageLayout.createSequentialGroup()
                 .addGap(141, 141, 141)
-                .addComponent(jRadioButtonOccupant1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
-                .addComponent(jRadioButtonOccupant2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
-                .addComponent(jRadioButtonOccupant3)
+                .addComponent(jRadioButtonOccupant1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(jRadioButtonOccupant2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(jRadioButtonOccupant3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanelTitleAndImageLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jRadioButtonOccupant1, jRadioButtonOccupant2, jRadioButtonOccupant3});
-
         jPanelTitleAndImageLayout.setVerticalGroup(
             jPanelTitleAndImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTitleAndImageLayout.createSequentialGroup()
@@ -164,6 +165,14 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             }
         });
 
+        jButtonOpenWiki.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jButtonOpenWiki.setText("Open wiki webpage");
+        jButtonOpenWiki.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOpenWikiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelDescriptionLayout = new javax.swing.GroupLayout(jPanelDescription);
         jPanelDescription.setLayout(jPanelDescriptionLayout);
         jPanelDescriptionLayout.setHorizontalGroup(
@@ -171,15 +180,17 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             .addGroup(jPanelDescriptionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDescriptionLayout.createSequentialGroup()
-                        .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
+                    .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelDescriptionLayout.createSequentialGroup()
                         .addComponent(jButtonCount, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonCollect, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jButtonCollect, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelDescriptionLayout.createSequentialGroup()
+                        .addComponent(jButtonOpenWiki)
+                        .addGap(0, 243, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)))
         );
 
         jPanelDescriptionLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonCollect, jButtonCount});
@@ -192,9 +203,11 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
                     .addComponent(jLabelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCount)
-                    .addComponent(jButtonCollect))
+                .addGroup(jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelDescriptionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonCount)
+                        .addComponent(jButtonCollect))
+                    .addComponent(jButtonOpenWiki, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -327,6 +340,53 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCountActionPerformed
 
     /**
+     * This method is called when the wiki button is pressed.
+     * The method is used to retrieve the occupant value and set the uri for that occupant.
+     * 
+     * @param evt The mouse click event
+     * @return void
+     */
+    private void jButtonOpenWikiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenWikiActionPerformed
+        String uri = null;
+
+        // Set the uri value according to the occupant selected
+        switch (numOfOccupant) {
+            case 1:
+                if (jRadioButtonOccupant1.isSelected()) {
+                    uri = setURI(occupants[0]);
+                }
+
+                break;
+            case 2:
+                if (jRadioButtonOccupant1.isSelected()) {
+                    uri = setURI(occupants[0]);
+                } else if (jRadioButtonOccupant2.isSelected()) {
+                    uri = setURI(occupants[1]);
+                }
+
+                break;
+            case 3:
+                if (jRadioButtonOccupant1.isSelected()) {
+                    uri = setURI(occupants[0]);
+                } else if (jRadioButtonOccupant2.isSelected()) {
+                    uri = setURI(occupants[1]);
+                } else if (jRadioButtonOccupant3.isSelected()) {
+                    uri = setURI(occupants[2]);
+                }
+
+                break;
+        }
+
+        // Open the uri in the browser
+        try {
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(uri));
+        } catch (IOException ex) {
+            Logger.getLogger(GridSquareInfoFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButtonOpenWikiActionPerformed
+
+    /**
      * This method is used for set the icon for the jLabel, which is displayed
      * in the GridSquareInfoFrame. In this method, the jLabel is assigned with
      * the related image for the selected occupant. In the GridSquarInfoPanel,
@@ -429,10 +489,98 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * This helper method sets the uri value according to the occupant type.
+     * 
+     * @param occupant Specify the type of occupant from which the uri value can be set
+     * @return String The value of the URI of the occupant.
+     */
+    private String setURI(Occupant occupant) {
+        String uri = null;
+
+        switch (occupant.getName()) {
+            case "Kiwi":
+                uri = "https://en.wikipedia.org/wiki/Kiwi";
+                break;
+            case "Sandwich":
+                uri = "https://en.wikipedia.org/wiki/Sandwich";
+                break;
+            case "Muesli":
+                uri = "https://en.wikipedia.org/wiki/Muesli";
+                break;
+            case "Apple":
+                uri = "https://en.wikipedia.org/wiki/Apple";
+                break;
+            case "Orange Juice":
+                uri = "https://en.wikipedia.org/wiki/Orange_juice";
+                break;
+            case "Trap":
+                uri = "https://en.wikipedia.org/wiki/Trapping";
+                break;
+            case "Screwdriver":
+                uri = "https://en.wikipedia.org/wiki/Screwdriver";
+                break;
+            case "Oystercatcher":
+                uri = "https://en.wikipedia.org/wiki/Oystercatcher";
+                break;
+            case "Crab":
+                uri = "https://en.wikipedia.org/wiki/Crab";
+                break;
+            case "Fernbird":
+                uri = "https://en.wikipedia.org/wiki/New_Zealand_fernbird";
+                break;
+            case "Heron":
+                uri = "https://en.wikipedia.org/wiki/Heron";
+                break;
+            case "Robin":
+                uri = "https://en.wikipedia.org/wiki/Robin";
+                break;
+            case "Tui":
+                uri = "https://en.wikipedia.org/wiki/Tui";
+                break;
+            case "Rat":
+                uri = "https://en.wikipedia.org/wiki/Rat";
+                break;
+            case "Cat":
+                uri = "https://en.wikipedia.org/wiki/Cat";
+                break;
+            case "Kiore":
+                uri = "https://en.wikipedia.org/wiki/Polynesian_rat";
+                break;
+            case "Stoat":
+                uri = "https://en.wikipedia.org/wiki/Stoat";
+                break;
+            case "Possum":
+                uri = "https://en.wikipedia.org/wiki/Possum";
+                break;
+            case "Cliff":
+                uri = "https://en.wikipedia.org/wiki/Cliff";
+                break;
+            case "Pond":
+                uri = "https://en.wikipedia.org/wiki/Pond";
+                break;
+            case "Rock":
+                uri = "https://en.wikipedia.org/wiki/Rock";
+                break;
+            case "Sunburn":
+                uri = "https://en.wikipedia.org/wiki/Sunburn";
+                break;
+            case "Fall":
+                uri = "https://en.wikipedia.org/wiki/Autumn";
+                break;
+            case "Broken trap":
+                uri = "https://en.wikipedia.org/wiki/Broken_trap";
+                break;
+        }
+
+        return uri;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupSelectOccupant;
     private javax.swing.JButton jButtonCollect;
     private javax.swing.JButton jButtonCount;
+    private javax.swing.JButton jButtonOpenWiki;
     private javax.swing.JLabel jLabelImage;
     private javax.swing.JPanel jPanelDescription;
     private javax.swing.JPanel jPanelTitleAndImage;
