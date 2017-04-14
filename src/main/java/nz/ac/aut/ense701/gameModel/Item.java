@@ -17,10 +17,11 @@ public  abstract class Item extends Occupant
      * @param pos the position of the item
      * @param name the name of the item
      * @param description a longer description of the item
+     * @param wikiDescription an article describing of the item
      */
-    public Item(Position pos, String name, String description, double weight, double size) 
+    public Item(Position pos, String name, String description, double weight, double size, String wikiDescription) 
     {
-        super(pos, name, description);
+        super(pos, name, description, wikiDescription);
         this.weight = weight;
         this.size = size;
     }

@@ -1,5 +1,6 @@
 package nz.ac.aut.ense701.gameModel;
 
+import java.util.Scanner;
 import org.junit.Test;
 
 /**
@@ -139,30 +140,30 @@ public class GameTest extends junit.framework.TestCase
     @Test
     public void testCanCollectCollectable(){
         //Items that are collectable and fit in backpack
-        Item valid = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0);
+        Item valid = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0,"A wiki description");
         assertTrue("Should be able to collect", game.canCollect(valid));
     }
     
     @Test    
     public void testCanCollectNotCollectable(){
         //Items with size of '0' cannot be carried
-        Item notCollectable = new Food(playerPosition,"Sandwich", "Very Heavy Sandwich",10.0, 0.0,1.0);
+        Item notCollectable = new Food(playerPosition,"Sandwich", "Very Heavy Sandwich",10.0, 0.0,1.0,"A wiki description");
         assertFalse("Should not be able to collect", game.canCollect(notCollectable));
     }
     
     @Test
     public void testCanUseFoodValid(){
         //Food can always be used
-        Item valid = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0);
+        Item valid = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0,"A wiki description");
         assertTrue("Should be able to use", game.canUse(valid));
     }
     
     @Test
     public void testCanUseTrapValid(){
         //Trap can be used if there is a predator here
-        Item valid = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0);
+        Item valid = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0,"A wiki description");
         //Add predator
-        Predator rat = new Predator(playerPosition,"Rat", "A norway rat");
+        Predator rat = new Predator(playerPosition,"Rat", "A norway rat","A wiki description");
         island.addOccupant(playerPosition, rat);
         assertTrue("Should be able to use", game.canUse(valid));
     }
@@ -170,7 +171,7 @@ public class GameTest extends junit.framework.TestCase
     @Test
     public void testCanUseTrapNoPredator(){
         //Trap can be used if there is a predator here
-        Item tool = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0);
+        Item tool = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0,"A wiki description");
 
         assertFalse("Should not be able to use", game.canUse(tool));
     }
@@ -178,8 +179,8 @@ public class GameTest extends junit.framework.TestCase
     @Test
     public void testCanUseTool(){
         //Screwdriver can be used if player has a broken trap
-        Item tool = new Tool(playerPosition,"Screwdriver", "A good tool to fix a trap",1.0, 1.0);
-        Tool trap = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0);
+        Item tool = new Tool(playerPosition,"Screwdriver", "A good tool to fix a trap",1.0, 1.0,"A wiki description");
+        Tool trap = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0,"A wiki description");
         trap.setBroken();
         player.collect(trap);
 
@@ -189,8 +190,8 @@ public class GameTest extends junit.framework.TestCase
     @Test
     public void testCanUseToolNoTrap(){
         //Screwdriver can be used if player has a broken trap
-        Item tool = new Tool(playerPosition,"Screwdriver", "A good tool to fix a trap",1.0, 1.0);
-        Tool trap = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0);
+        Item tool = new Tool(playerPosition,"Screwdriver", "A good tool to fix a trap",1.0, 1.0,"A wiki description");
+        Tool trap = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0,"A wiki description");
         trap.setBroken();
 
         assertFalse("Should not be able to use", game.canUse(tool));
@@ -199,8 +200,8 @@ public class GameTest extends junit.framework.TestCase
     @Test
     public void testCanUseToolTrapNotBroken(){
         //Screwdriver can be used if player has a broken trap
-        Item tool = new Tool(playerPosition,"Screwdriver", "A good tool to fix a trap",1.0, 1.0);
-        Tool trap = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0);
+        Item tool = new Tool(playerPosition,"Screwdriver", "A good tool to fix a trap",1.0, 1.0,"A wiki description");
+        Tool trap = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0,"A wiki description");
         player.collect(trap);
 
         assertFalse("Should not be able to use", game.canUse(tool));
@@ -217,7 +218,7 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testCollectValid(){
-        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0);
+        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0,"A wiki description");
         island.addOccupant(playerPosition, food);
         assertTrue("Food now on island", island.hasOccupant(playerPosition, food));
         game.collectItem(food);
@@ -228,7 +229,7 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testCollectNotCollectable(){
-        Item notCollectable = new Food(playerPosition,"House", "Can't collect",1.0, 0.0,1.0);
+        Item notCollectable = new Food(playerPosition,"House", "Can't collect",1.0, 0.0,1.0,"A wiki description");
         island.addOccupant(playerPosition, notCollectable);
         assertTrue("House now on island", island.hasOccupant(playerPosition, notCollectable));
         game.collectItem(notCollectable);
@@ -239,7 +240,7 @@ public class GameTest extends junit.framework.TestCase
     
     @Test    
     public void testDropValid(){
-        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0);
+        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0,"A wiki description");
         island.addOccupant(playerPosition, food);
         game.collectItem(food);
         assertTrue("Player should have food",player.hasItem(food));
@@ -251,15 +252,15 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testDropNotValidPositionFull(){
-        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0);
+        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.0,"A wiki description");
         island.addOccupant(playerPosition, food);
         game.collectItem(food);
         assertTrue("Player should have food",player.hasItem(food));
         
         //Positions can have at most three occupants
-        Item dummy = new Tool(playerPosition,"Trap", "An extra occupant", 1.0, 1.0);
-        Item dummy2 = new Tool(playerPosition,"Trap", "An extra occupant", 1.0, 1.0);
-        Item dummy3 = new Tool(playerPosition,"Trap", "An extra occupant", 1.0, 1.0);
+        Item dummy = new Tool(playerPosition,"Trap", "An extra occupant", 1.0, 1.0,"A wiki description");
+        Item dummy2 = new Tool(playerPosition,"Trap", "An extra occupant", 1.0, 1.0,"A wiki description");
+        Item dummy3 = new Tool(playerPosition,"Trap", "An extra occupant", 1.0, 1.0,"A wiki description");
         island.addOccupant(playerPosition, dummy);
         island.addOccupant(playerPosition, dummy2);
         island.addOccupant(playerPosition, dummy3);
@@ -271,7 +272,7 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testUseItemFoodCausesIncrease(){
-        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.3);
+        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.3,"A wiki description");
         player.collect(food);
         assertTrue("Player should have food",player.hasItem(food));
         
@@ -283,7 +284,7 @@ public class GameTest extends junit.framework.TestCase
     }
  
     public void testUseItemFoodNoIncrease(){
-        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.3);
+        Item food = new Food(playerPosition,"Sandwich", "Yummy",1.0, 1.0,1.3,"A wiki description");
         player.collect(food);
         assertTrue("Player should have food",player.hasItem(food));
         
@@ -295,12 +296,12 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testUseItemTrap(){
-        Item trap = new Tool(playerPosition,"Trap", "Rat trap",1.0, 1.0);
+        Item trap = new Tool(playerPosition,"Trap", "Rat trap",1.0, 1.0,"A wiki description");
         player.collect(trap);
         assertTrue("Player should have trap",player.hasItem(trap));
         
         // Can only use trap if there is a predator.
-        Predator predator = new Predator(playerPosition,"Rat", "Norway rat");
+        Predator predator = new Predator(playerPosition,"Rat", "Norway rat","A wiki description");
         island.addOccupant(playerPosition, predator);
         game.useItem(trap);
         assertTrue("Player should still have trap",player.hasItem(trap));
@@ -316,12 +317,12 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testUseItemBrokenTrap(){
-        Tool trap = new Tool(playerPosition,"Trap", "Rat trap",1.0, 1.0);
+        Tool trap = new Tool(playerPosition,"Trap", "Rat trap",1.0, 1.0,"A wiki description");
         player.collect(trap);
         assertTrue("Player should have trap",player.hasItem(trap));
         
         // Can only use trap if there is a predator.
-        Predator predator = new Predator(playerPosition,"Rat", "Norway rat");
+        Predator predator = new Predator(playerPosition,"Rat", "Norway rat","A wiki description");
         island.addOccupant(playerPosition, predator);
         trap.setBroken();
         game.useItem(trap);
@@ -331,11 +332,11 @@ public class GameTest extends junit.framework.TestCase
     
     @Test
     public void testUseItemToolFixTrap(){
-        Tool trap = new Tool(playerPosition,"Trap", "Rat trap",1.0, 1.0);
+        Tool trap = new Tool(playerPosition,"Trap", "Rat trap",1.0, 1.0,"A wiki description");
         trap.setBroken();
         player.collect(trap);
         assertTrue("Player should have trap",player.hasItem(trap));
-        Tool screwdriver = new Tool(playerPosition,"Screwdriver", "Useful screwdriver",1.0, 1.0);
+        Tool screwdriver = new Tool(playerPosition,"Screwdriver", "Useful screwdriver",1.0, 1.0,"A wiki description");
         player.collect(screwdriver);
         assertTrue("Player should have screwdriver",player.hasItem(screwdriver));
         
@@ -364,7 +365,7 @@ public class GameTest extends junit.framework.TestCase
     @Test
     public void testPlayerMoveFatalHazard(){ 
         Position hazardPosition = new Position(island, playerPosition.getRow()+1, playerPosition.getColumn());
-        Hazard fatal = new Hazard(hazardPosition, "Cliff", "Steep cliff", 1.0);
+        Hazard fatal = new Hazard(hazardPosition, "Cliff", "Steep cliff", 1.0,"A wiki description");
         island.addOccupant(hazardPosition, fatal);
         
         assertTrue("Move valid", game.playerMove(MoveDirection.SOUTH));
@@ -383,7 +384,7 @@ public class GameTest extends junit.framework.TestCase
     public void testPlayerMoveNonFatalHazardNotDead(){
         double stamina = player.getStaminaLevel(); 
         Position hazardPosition = new Position(island, playerPosition.getRow()+1, playerPosition.getColumn());
-        Hazard fatal = new Hazard(hazardPosition, "Cliff", "Not so steep cliff", 0.5);
+        Hazard fatal = new Hazard(hazardPosition, "Cliff", "Not so steep cliff", 0.5,"A wiki description");
         island.addOccupant(hazardPosition, fatal);
         
         assertTrue("Move valid", game.playerMove(MoveDirection.SOUTH));
@@ -396,7 +397,7 @@ public class GameTest extends junit.framework.TestCase
     @Test
     public void testPlayerMoveNonFatalHazardDead(){
         Position hazardPosition = new Position(island, playerPosition.getRow()+1, playerPosition.getColumn());
-        Hazard fatal = new Hazard(hazardPosition, "Cliff", "Not so steep cliff", 0.5);
+        Hazard fatal = new Hazard(hazardPosition, "Cliff", "Not so steep cliff", 0.5,"A wiki description");
         island.addOccupant(hazardPosition, fatal);
         player.reduceStamina(47.0);
         
@@ -426,14 +427,28 @@ public class GameTest extends junit.framework.TestCase
         assertEquals("Wrong count", game.getKiwiCount(), 1);
     }
 
-/**
- * Private helper methods
- */
-    
+    @Test
+    public void testScanWikiDescription() {
+        String wikiDescription = "The first line of the wiki description.\n" +
+                                "The second line of the wiki description.\n" +
+                                "The last line of the wiki description.[The end]\n";
+
+        Scanner input = new Scanner(wikiDescription);
+
+        String result = " first line of the wiki description.\n\n" +
+                                "The second line of the wiki description.\n\n" +
+                                "The last line of the wiki description.[The end]";
+        
+        assertEquals(game.scanWikiDescription(input), result);
+    }
+
+    /**
+     * Private helper methods
+     */
     private boolean trapAllPredators()
     {
         //Firstly player needs a trap
-        Tool trap = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0);
+        Tool trap = new Tool(playerPosition,"Trap", "A predator trap",1.0, 1.0,"A wiki description");
         game.collectItem(trap);
         
         //Now player needs to trap all predators

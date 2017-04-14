@@ -14,10 +14,11 @@ public class Kiwi  extends Fauna
      * @param pos the position of the kiwi object
      * @param name the name of the kiwi object
      * @param description a longer description of the kiwi
+     * @param wikiDescription an article describing of the kiwi
      */
-    public Kiwi(Position pos, String name, String description) 
+    public Kiwi(Position pos, String name, String description, String wikiDescription) 
     {
-        super(pos, name, description);
+        super(pos, name, description, wikiDescription);
         counted = false;
     } 
     

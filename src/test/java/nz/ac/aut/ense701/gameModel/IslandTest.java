@@ -32,7 +32,7 @@ public class IslandTest extends junit.framework.TestCase
         testIsland = new Island(6,5);
         onIsland = new Position(testIsland, 1,0); 
         notOnIsland = Position.NOT_ON_ISLAND;
-        cat = new Predator(onIsland, "cat", "A hunting cat");
+        cat = new Predator(onIsland, "cat", "A hunting cat","A wiki description");
     }
 
     /**
@@ -62,7 +62,7 @@ public class IslandTest extends junit.framework.TestCase
     
     @Test
     public void testHasPredatorNoPredator(){
-        Kiwi kiwi = new Kiwi(onIsland, "Kiwi", "Little spotted kiwi");
+        Kiwi kiwi = new Kiwi(onIsland, "Kiwi", "Little spotted kiwi","A wiki description");
         testIsland.addOccupant(onIsland, kiwi);
         assertFalse(testIsland.hasPredator(onIsland));
     }
@@ -106,7 +106,7 @@ public class IslandTest extends junit.framework.TestCase
     @Test
     public void testRemoveOccupantNotAtPosition() {
         Position another = new Position(testIsland, 0,0);
-        Predator rat = new Predator(another, "Rat", "A norway rat");
+        Predator rat = new Predator(another, "Rat", "A norway rat","A wiki description");
         assertFalse( testIsland.removeOccupant(onIsland, rat));
     }
     

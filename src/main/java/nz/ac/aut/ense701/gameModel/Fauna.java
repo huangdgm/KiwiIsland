@@ -15,13 +15,14 @@ public class Fauna extends Occupant
 
     /**
      * Constructor for objects of class Endangered
-     * @param pos the position of the kiwi
-     * @param name the name of the kiwi
-     * @param description a longer description of the kiwi
+     * @param pos the position of the fauna
+     * @param name the name of the fauna
+     * @param description a longer description of the fauna
+     * @param wikiDescription an article describing of the fauna
      */
-    public Fauna(Position pos, String name, String description) 
+    public Fauna(Position pos, String name, String description, String wikiDescription) 
     {
-        super(pos, name, description);
+        super(pos, name, description, wikiDescription);
     } 
     
  

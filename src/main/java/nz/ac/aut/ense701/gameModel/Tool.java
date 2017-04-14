@@ -19,10 +19,11 @@ public class Tool extends Item
      * @param description a longer description of the tool
      * @param weight the weight of the tool
      * @param size the size of the tool
+     * @param wikiDescription an article describing the tool
      */
-    public Tool(Position pos, String name, String description, double weight, double size) 
+    public Tool(Position pos, String name, String description, double weight, double size, String wikiDescription) 
     {
-        super(pos, name, description, weight, size);
+        super(pos, name, description, weight, size, wikiDescription);
         this.broken = false;
     }
     

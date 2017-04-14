@@ -11,6 +11,12 @@ import nz.ac.aut.ense701.gui.KiwiCountUI;
  */
 public class Main 
 {
+    // create the game object
+    public static final Game game = new Game();
+        
+    // create the GUI for the game
+    public static final KiwiCountUI  gui  = new KiwiCountUI(game);
+    
     /**
      * Main method of Kiwi Count.
      * 
@@ -18,10 +24,6 @@ public class Main
      */
     public static void main(String[] args) 
     {
-        // create the game object
-        final Game game = new Game();
-        // create the GUI for the game
-        final KiwiCountUI  gui  = new KiwiCountUI(game);
         // make the GUI visible
         java.awt.EventQueue.invokeLater(new Runnable() 
         {
@@ -32,5 +34,4 @@ public class Main
             }
         });
     }
-
 }

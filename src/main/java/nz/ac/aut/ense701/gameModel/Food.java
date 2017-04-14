@@ -20,10 +20,11 @@ public class Food extends Item
      * @param size the size of the food object
      * @param energy stamina contribution of the food object
      *               when the player uses the object
+     * @param wikiDescription an article describing of the food object
      */
-    public Food(Position pos, String name, String description, double weight, double size, double energy) 
+    public Food(Position pos, String name, String description, double weight, double size, double energy, String wikiDescription) 
     {
-        super(pos, name, description,weight, size);
+        super(pos, name, description,weight, size, wikiDescription);
         this.energy = energy;
     }
 
