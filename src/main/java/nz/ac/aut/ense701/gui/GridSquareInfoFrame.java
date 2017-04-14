@@ -110,11 +110,11 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         jPanelTitleAndImageLayout.setHorizontalGroup(
             jPanelTitleAndImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTitleAndImageLayout.createSequentialGroup()
-                .addGap(210, 210, 210)
+                .addGap(141, 141, 141)
                 .addComponent(jRadioButtonOccupant1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(93, 93, 93)
                 .addComponent(jRadioButtonOccupant2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(95, 95, 95)
                 .addComponent(jRadioButtonOccupant3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
