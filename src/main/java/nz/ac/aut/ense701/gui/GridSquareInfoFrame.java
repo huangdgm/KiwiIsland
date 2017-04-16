@@ -69,7 +69,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         setTitle("Occupant Information");
         setAlwaysOnTop(true);
         setFocusable(false);
-        setLocation(new java.awt.Point(400, 200));
+        setLocation(new java.awt.Point(300, 200));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -459,25 +459,25 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
     private void setIconForJLableImage(Occupant occupant) {
         switch (occupant.getName()) {
             case "Kiwi":
-                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi.png")));
+                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi1.png")));
                 break;
             case "Sandwich":
-                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sandwich.png")));
+                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sandwich1.png")));
                 break;
             case "Apple":
-                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/apple.jpg")));
+                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/apple1.jpg")));
                 break;
             case "Muesli Bar":
-                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Muesli.jpg")));
+                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Muesli1.jpg")));
                 break;
             case "Orange Juice":
-                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oj.jpg")));
+                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oj1.jpg")));
                 break;
             case "Trap":
-                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trap.jpg")));
+                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/trap1.jpg")));
                 break;
             case "Screwdriver":
-                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screwdriver.jpg")));
+                jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screwdriver1.jpg")));
                 break;
             case "Oystercatcher":
                 jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Oystercatcher.jpg")));

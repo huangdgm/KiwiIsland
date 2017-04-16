@@ -34,7 +34,6 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
         this.Occupant = occupant;
         this.Jframe = JFrame;
         initComponents();
-        setLocation(500, 400);
         this.Jframe.setEnabled(false);
     }
 
@@ -53,9 +52,6 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
     public void setJframe(JFrame Jframe) {
         this.Jframe = Jframe;
     }
-    
-    
-
     
     public void setIconForJLableImage() {
 
@@ -88,27 +84,24 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
         switch (actiontype) {
             case USE:
                 if(this.getOccupant().getName().equals("Trap")){
-                    this.activityLbl.setText("You trap a predator.");
+                    this.activityLbl.setText("You trapped this predator.");
                 }else if(this.getOccupant().getName().equals("Screwdriver")){
-                    this.activityLbl.setText("You fix the trap.");
+                    this.activityLbl.setText("You fixed the broken trap.");
                 }else{
-                    this.activityLbl.setText("You ate or drink " + this.getOccupant().getName());
+                    this.activityLbl.setText("You consumed this " + this.getOccupant().getName());
                 }
                 break;
             case DROP:
-                this.activityLbl.setText("You drop " + this.getOccupant().toString());
+                this.activityLbl.setText("You dropped " + this.getOccupant().toString());
                 break;
             case COUNT:
-                this.activityLbl.setText("You counted 1 " + this.getOccupant().toString());
+                this.activityLbl.setText("You counted this " + this.getOccupant().toString());
                 break;
             case COLLECT:
                 this.activityLbl.setText("You collected " + this.getOccupant().toString());
                 break;
         }
-    }
-        
-
-        
+    }   
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -126,10 +119,17 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Activity Message");
         setAlwaysOnTop(true);
+        setLocation(new java.awt.Point(500, 200));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         picActivitylbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        okButton.setFont(new java.awt.Font("ËÎÌו", 1, 12)); // NOI18N
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,26 +144,26 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(picActivitylbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(activityLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(activityLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(picActivitylbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(activityLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(activityLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(picActivitylbl, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -175,6 +175,11 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
         this.dispose();
         this.Jframe.setEnabled(true);
     }//GEN-LAST:event_okButtonActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.dispose();
+        this.Jframe.setEnabled(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
