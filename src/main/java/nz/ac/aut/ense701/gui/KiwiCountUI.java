@@ -3,6 +3,8 @@ package nz.ac.aut.ense701.gui;
 import java.awt.Component;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import nz.ac.aut.ense701.gameModel.ActionType;
@@ -38,7 +40,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 		initIslandGrid();
 		update();
 	}
-
+        
 	/**
 	 * This method is called by the game model every time something changes.
 	 * Trigger an update.
@@ -518,18 +520,22 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 
 	private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveEastActionPerformed
 		game.playerMove(MoveDirection.EAST);
+                update();
 	}// GEN-LAST:event_btnMoveEastActionPerformed
 
 	private void btnMoveNorthActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveNorthActionPerformed
 		game.playerMove(MoveDirection.NORTH);
+                update();
 	}// GEN-LAST:event_btnMoveNorthActionPerformed
 
-	private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveSouthActionPerformed
+	private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveSouctthAionPerformed
 		game.playerMove(MoveDirection.SOUTH);
+                update();
 	}// GEN-LAST:event_btnMoveSouthActionPerformed
 
 	private void btnMoveWestActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveWestActionPerformed
 		game.playerMove(MoveDirection.WEST);
+                update();
 	}// GEN-LAST:event_btnMoveWestActionPerformed
 
 	private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
@@ -600,7 +606,14 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 		// the right position
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < columns; col++) {
-				pnlIsland.add(new GridSquarePanel(game, row, col));
+                                    if(row == 0 && col == 2) {
+                                        GridSquarePanel gsp = new GridSquarePanel(game, 0, 2);
+                                        gsp.getLblText().setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi.png")));
+                                        pnlIsland.add(gsp);
+                                    } else {
+                                        pnlIsland.add(new GridSquarePanel(game, row, col));
+                                    }
+                            
 			}
 		}
 	}
