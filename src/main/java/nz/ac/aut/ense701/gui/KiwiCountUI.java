@@ -2,13 +2,20 @@ package nz.ac.aut.ense701.gui;
 
 import java.awt.Component;
 import java.awt.GridLayout;
+import javax.swing.JFrame;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import nz.ac.aut.ense701.gameModel.ActionType;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.GameEventListener;
 import nz.ac.aut.ense701.gameModel.GameState;
+import nz.ac.aut.ense701.gameModel.Item;
+import nz.ac.aut.ense701.gameModel.Kiwi;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
+import nz.ac.aut.ense701.gameModel.Occupant;
+import nz.ac.aut.ense701.gameModel.Position;
 
 /*
  * User interface form for Kiwi Island.
@@ -533,10 +540,18 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 
 	private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
 		Object obj = listObjects.getSelectedValue();
+                                            ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant)obj, this);
+                                            actPop.setIconForJLableImage();
+                                            actPop.setActivityTextArea(ActionType.COLLECT);
+                                            actPop.setVisible(true);
 		game.collectItem(obj);
 	}// GEN-LAST:event_btnCollectActionPerformed
 
 	private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDropActionPerformed
+                                            ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant)listInventory.getSelectedValue(), this);
+                                            actPop.setIconForJLableImage();
+                                            actPop.setActivityTextArea(ActionType.DROP);
+                                            actPop.setVisible(true);
 		game.dropItem(listInventory.getSelectedValue());
 	}// GEN-LAST:event_btnDropActionPerformed
 
@@ -550,6 +565,10 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 	}// GEN-LAST:event_listObjectsValueChanged
 
 	private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUseActionPerformed
+                                            ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant)listInventory.getSelectedValue(), this);
+                                            actPop.setIconForJLableImage();
+                                            actPop.setActivityTextArea(ActionType.USE);
+                                            actPop.setVisible(true);
 		game.useItem(listInventory.getSelectedValue());
 	}// GEN-LAST:event_btnUseActionPerformed
 
@@ -562,9 +581,16 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 		}
 	}// GEN-LAST:event_listInventoryValueChanged
 
-	private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCountActionPerformed
-		game.countKiwi();
-	}// GEN-LAST:event_btnCountActionPerformed
+    private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCountActionPerformed
+        if (listObjects.getSelectedValue().toString().equals("Kiwi")) {
+            Object ojc = listObjects.getSelectedValue();
+            ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) ojc, this);
+            actPop.setIconForJLableImage();
+            actPop.setActivityTextArea(ActionType.COUNT);
+            actPop.setVisible(true);
+            game.countKiwi();
+        }
+    }// GEN-LAST:event_btnCountActionPerformed
 
 	/**
 	 * Creates and initialises the island grid.

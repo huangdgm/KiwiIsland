@@ -14,7 +14,10 @@ import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import nz.ac.aut.ense701.gameModel.ActionType;
 import nz.ac.aut.ense701.gameModel.Game;
+import nz.ac.aut.ense701.gameModel.Island;
+import nz.ac.aut.ense701.gameModel.Kiwi;
 import nz.ac.aut.ense701.gameModel.Occupant;
 import nz.ac.aut.ense701.gameModel.Position;
 import nz.ac.aut.ense701.main.Main;
@@ -295,6 +298,11 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
                 if (jRadioButtonOccupant1.isSelected()) {
                     if (game.collectItem(occupants[0])) {
                         // After collecting the occupant, disable the collect button
+                        ActivityPopupFrame actPop = new ActivityPopupFrame(occupants[0], this);
+                        actPop.setIconForJLableImage();
+                        actPop.setActivityTextArea(ActionType.COLLECT);
+                        actPop.setVisible(true);
+
                         jButtonCollect.setEnabled(false);
                     }
                 }
@@ -303,10 +311,22 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             case 2:
                 if (jRadioButtonOccupant1.isSelected()) {
                     if (game.collectItem(occupants[0])) {
+
+                        ActivityPopupFrame actPop = new ActivityPopupFrame(occupants[0], this);
+                        actPop.setIconForJLableImage();
+                        actPop.setActivityTextArea(ActionType.COLLECT);
+                        actPop.setVisible(true);
+
                         jButtonCollect.setEnabled(false);
                     }
                 } else if (jRadioButtonOccupant2.isSelected()) {
                     if (game.collectItem(occupants[1])) {
+
+                        ActivityPopupFrame actPop = new ActivityPopupFrame(occupants[1], this);
+                        actPop.setIconForJLableImage();
+                        actPop.setActivityTextArea(ActionType.COLLECT);
+                        actPop.setVisible(true);
+
                         jButtonCollect.setEnabled(false);
                     }
                 }
@@ -315,14 +335,32 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             case 3:
                 if (jRadioButtonOccupant1.isSelected()) {
                     if (game.collectItem(occupants[0])) {
+
+                        ActivityPopupFrame actPop = new ActivityPopupFrame(occupants[0], this);
+                        actPop.setIconForJLableImage();
+                        actPop.setActivityTextArea(ActionType.COLLECT);
+                        actPop.setVisible(true);
+
                         jButtonCollect.setEnabled(false);
                     }
                 } else if (jRadioButtonOccupant2.isSelected()) {
                     if (game.collectItem(occupants[1])) {
+
+                        ActivityPopupFrame actPop = new ActivityPopupFrame(occupants[1], this);
+                        actPop.setIconForJLableImage();
+                        actPop.setActivityTextArea(ActionType.COLLECT);
+                        actPop.setVisible(true);
+
                         jButtonCollect.setEnabled(false);
                     }
                 } else if (jRadioButtonOccupant3.isSelected()) {
                     if (game.collectItem(occupants[2])) {
+
+                        ActivityPopupFrame actPop = new ActivityPopupFrame(occupants[2], this);
+                        actPop.setIconForJLableImage();
+                        actPop.setActivityTextArea(ActionType.COLLECT);
+                        actPop.setVisible(true);
+
                         jButtonCollect.setEnabled(false);
                     }
                 }
@@ -341,8 +379,20 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
      */
     private void jButtonCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCountActionPerformed
         game.countKiwi();
+        
+         for (Occupant occupant : game.getIsland().getOccupants(position)) {
+             if (occupant instanceof Kiwi) {
+                 Kiwi kiwi = (Kiwi) occupant;
+                 ActivityPopupFrame actPop = new ActivityPopupFrame(kiwi, this);
+                 actPop.setIconForJLableImage();
+                 actPop.setActivityTextArea(ActionType.COUNT);
+                 actPop.setVisible(true);
+            }
+        }
+        
         // After the kiwi was counted, disable the count button
         jButtonCount.setEnabled(false);
+
     }//GEN-LAST:event_jButtonCountActionPerformed
 
     /**
