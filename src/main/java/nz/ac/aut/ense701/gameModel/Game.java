@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
+import nz.ac.aut.ense701.gui.ActivityPopupFrame;
 
 /**
  * This is the class that knows the Kiwi Island game rules and state and
@@ -378,10 +379,9 @@ public class Game {
         if (success) {
             // player has picked up an item: remove from grid square
             island.removeOccupant(player.getPosition(), (Item) item);
-
             // everybody has to know about the change
             notifyGameEventListeners();
-        }        
+        }
         return success;
     }
 
@@ -419,6 +419,7 @@ public class Game {
         if (item instanceof Food && player.hasItem((Food) item)) //Player east food to increase stamina
         {
             Food food = (Food) item;
+
             // player gets energy boost from food
             player.increaseStamina(food.getEnergy());
             // player has consumed the food: remove from inventory
@@ -452,6 +453,7 @@ public class Game {
                 if (!kiwi.counted()) {
                     kiwi.count();
                     kiwiCount++;
+
                 }
             }
         }
@@ -587,7 +589,7 @@ public class Game {
         {
             Occupant occupant = island.getPredator(current);
             //Predator has been trapped so remove
-            island.removeOccupant(current, occupant);            
+            island.removeOccupant(current, occupant);
             predatorsTrapped++;
         }
         
@@ -620,6 +622,7 @@ public class Game {
             Tool trap = player.getTrap();
             if (trap != null) {
                 trap.setBroken();
+
                 this.setPlayerMessage("Sorry your predator trap is broken. You will need to find tools to fix it before you can use it again.");
             }
         } else // hazard reduces player's stamina
