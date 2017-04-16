@@ -3,8 +3,10 @@ package nz.ac.aut.ense701.gui;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.util.Arrays;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
@@ -21,7 +23,7 @@ import nz.ac.aut.ense701.gameModel.Terrain;
  * @version 1.0 - created
  */
 public class GridSquarePanel extends javax.swing.JPanel {
-
+  
     /**
      * Creates new GridSquarePanel.
      *
@@ -29,11 +31,23 @@ public class GridSquarePanel extends javax.swing.JPanel {
      * @param row the row to represent
      * @param column the column to represent
      */
+//    public GridSquarePanel(Game game, int row, int column, ImageIcon ii) {
+//        this.game = game;
+//        this.row = row;
+//        this.column = column;
+//        this.lblText.setIcon(ii);
+//        initComponents();
+//        //this.ii = ii;
+//    }
+      
+	
+      
     public GridSquarePanel(Game game, int row, int column) {
         this.game = game;
         this.row = row;
         this.column = column;
         initComponents();
+        //this.ii = ii;
     }
 
     /**
@@ -87,11 +101,23 @@ public class GridSquarePanel extends javax.swing.JPanel {
             // set border colour according to 
             // whether the player is in the grid square or not
             setBorder(game.hasPlayer(row, column) ? activeBorder : normalBorder);
+            if(!game.hasPlayer(row, column)){
+                setBorder(game.hasPlayer(row, column) ? activeBorder : normalBorder);
+            }
+            if(game.hasPlayer(row, column)) {
+                
+                lblText.setHorizontalTextPosition(JLabel.CENTER);            
+                lblText.setIcon(new ImageIcon(getClass().getResource("/icon_3.png")));
+             
+             } else {
+                lblText.setIcon(null);
+            }
         } else {
             lblText.setText("");
             lblText.setBackground(null);
             setBorder(normalBorder);
         }
+        
     }
 
     /**
@@ -134,12 +160,16 @@ public class GridSquarePanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_lblTextMouseClicked
 
+    public JLabel getLblText() {
+        return lblText;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblText;
     // End of variables declaration//GEN-END:variables
 
     private Game game;
     private int row, column;
+    //private ImageIcon ii;
 
     private static final Border normalBorder = new LineBorder(Color.BLACK, 1);
     private static final Border activeBorder = new LineBorder(Color.RED, 3);
