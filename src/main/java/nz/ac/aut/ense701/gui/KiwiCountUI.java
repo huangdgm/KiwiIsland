@@ -73,7 +73,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
      */
     private void update() {
         // update the grid square panels
-        Component[] components = pnlIsland.getComponents();
+        Component[] components = getPnlIsland().getComponents();
         for (Component c : components) {
             // all components in the panel are GridSquarePanels,
             // so we can safely cast
@@ -108,12 +108,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         listObjects.setToolTipText(null);
         btnCollect.setEnabled(false);
         btnCount.setEnabled(false);
-
-        // update movement buttons
-        btnMoveNorth.setEnabled(game.isPlayerMovePossible(MoveDirection.NORTH));
-        btnMoveEast.setEnabled(game.isPlayerMovePossible(MoveDirection.EAST));
-        btnMoveSouth.setEnabled(game.isPlayerMovePossible(MoveDirection.SOUTH));
-        btnMoveWest.setEnabled(game.isPlayerMovePossible(MoveDirection.WEST));
     }
 
     /**
@@ -144,11 +138,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         lblKiwisCounted = new javax.swing.JLabel();
         txtKiwisCounted = new javax.swing.JLabel();
         txtPredatorsLeft = new javax.swing.JLabel();
-        javax.swing.JPanel pnlMovement = new javax.swing.JPanel();
-        btnMoveNorth = new javax.swing.JButton();
-        btnMoveSouth = new javax.swing.JButton();
-        btnMoveEast = new javax.swing.JButton();
-        btnMoveWest = new javax.swing.JButton();
         javax.swing.JPanel pnlInventory = new javax.swing.JPanel();
         javax.swing.JScrollPane scrlInventory = new javax.swing.JScrollPane();
         listInventory = new javax.swing.JList();
@@ -302,81 +291,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
         pnlControls.add(pnlPlayer, gridBagConstraints);
-
-        pnlMovement.setBorder(javax.swing.BorderFactory.createTitledBorder("Movement"));
-        pnlMovement.setLayout(new java.awt.GridBagLayout());
-
-        btnMoveNorth.setText("N");
-        btnMoveNorth.setFocusable(false);
-        btnMoveNorth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveNorthActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        pnlMovement.add(btnMoveNorth, gridBagConstraints);
-
-        btnMoveSouth.setText("S");
-        btnMoveSouth.setFocusable(false);
-        btnMoveSouth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveSouthActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        pnlMovement.add(btnMoveSouth, gridBagConstraints);
-
-        btnMoveEast.setText("E");
-        btnMoveEast.setFocusable(false);
-        btnMoveEast.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveEastActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        pnlMovement.add(btnMoveEast, gridBagConstraints);
-
-        btnMoveWest.setText("W");
-        btnMoveWest.setFocusable(false);
-        btnMoveWest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoveWestActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        pnlMovement.add(btnMoveWest, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.5;
-        pnlControls.add(pnlMovement, gridBagConstraints);
 
         pnlInventory.setBorder(javax.swing.BorderFactory.createTitledBorder("Inventory"));
         pnlInventory.setLayout(new java.awt.GridBagLayout());
@@ -546,26 +460,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         update();
     }//GEN-LAST:event_pnlIslandKeyReleased
 
-    private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveEastActionPerformed
-        game.playerMove(MoveDirection.EAST);
-        update();
-    }// GEN-LAST:event_btnMoveEastActionPerformed
-
-    private void btnMoveNorthActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveNorthActionPerformed
-        game.playerMove(MoveDirection.NORTH);
-        update();
-    }// GEN-LAST:event_btnMoveNorthActionPerformed
-
-    private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveSouctthAionPerformed
-        game.playerMove(MoveDirection.SOUTH);
-        update();
-    }// GEN-LAST:event_btnMoveSouthActionPerformed
-
-    private void btnMoveWestActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveWestActionPerformed
-        game.playerMove(MoveDirection.WEST);
-        update();
-    }// GEN-LAST:event_btnMoveWestActionPerformed
-
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
         Object obj = listObjects.getSelectedValue();
         ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) obj, this);
@@ -581,6 +475,10 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         actPop.setActivityTextArea(ActionType.DROP);
         actPop.setVisible(true);
         game.dropItem(listInventory.getSelectedValue());
+        
+        // Requests that the pnlIsland Component gets the input focus
+        // so that it can capture the key release event
+        getPnlIsland().requestFocusInWindow();
     }// GEN-LAST:event_btnDropActionPerformed
 
     private void listObjectsValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_listObjectsValueChanged
@@ -598,6 +496,10 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         actPop.setActivityTextArea(ActionType.USE);
         actPop.setVisible(true);
         game.useItem(listInventory.getSelectedValue());
+        
+        // Requests that the pnlIsland Component gets the input focus
+        // so that it can capture the key release event
+        getPnlIsland().requestFocusInWindow();
     }// GEN-LAST:event_btnUseActionPerformed
 
     private void listInventoryValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_listInventoryValueChanged
@@ -628,7 +530,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         int rows = game.getNumRows();
         int columns = game.getNumColumns();
         // set up the layout manager for the island grid panel
-        pnlIsland.setLayout(new GridLayout(rows, columns));
+        getPnlIsland().setLayout(new GridLayout(rows, columns));
         // create all the grid square panels and add them to the panel
         // the layout manager of the panel takes care of assigning them to the
         // the right position
@@ -637,9 +539,9 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
                 if (row == 0 && col == 2) {
                     GridSquarePanel gsp = new GridSquarePanel(game, 0, 2);
                     gsp.getLblText().setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi.png")));
-                    pnlIsland.add(gsp);
+                    getPnlIsland().add(gsp);
                 } else {
-                    pnlIsland.add(new GridSquarePanel(game, row, col));
+                    getPnlIsland().add(new GridSquarePanel(game, row, col));
                 }
 
             }
@@ -647,17 +549,13 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         
         // Requests that the pnlIsland Component gets the input focus
         // so that it can capture the key release event
-        pnlIsland.requestFocusInWindow();
+        getPnlIsland().requestFocusInWindow();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
     private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
-    private javax.swing.JButton btnMoveEast;
-    private javax.swing.JButton btnMoveNorth;
-    private javax.swing.JButton btnMoveSouth;
-    private javax.swing.JButton btnMoveWest;
     private javax.swing.JButton btnUse;
     private javax.swing.JLabel lblKiwisCounted;
     private javax.swing.JLabel lblPredators;
@@ -673,4 +571,11 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
     // End of variables declaration//GEN-END:variables
 
     private Game game;
+
+    /**
+     * @return the pnlIsland
+     */
+    public javax.swing.JPanel getPnlIsland() {
+        return pnlIsland;
+    }
 }

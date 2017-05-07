@@ -10,6 +10,7 @@ import nz.ac.aut.ense701.gameModel.ActionType;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.Item;
 import nz.ac.aut.ense701.gameModel.Occupant;
+import nz.ac.aut.ense701.main.Main;
 
 /**
  *
