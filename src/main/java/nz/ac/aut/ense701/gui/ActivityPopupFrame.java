@@ -5,7 +5,9 @@
  */
 package nz.ac.aut.ense701.gui;
 
+import java.awt.Frame;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import nz.ac.aut.ense701.gameModel.ActionType;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.Item;
@@ -21,43 +23,42 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
     /**
      * Creates new form ActivityPopupFrame
      */
-    
-    private Occupant Occupant;
-    private JFrame Jframe;
+    private Occupant occupant;
+    private JFrame jFrame;
     //private Game game;
-    
+
     public ActivityPopupFrame() {
         initComponents();
     }
-    
-    public ActivityPopupFrame(Occupant occupant, JFrame JFrame){
+
+    public ActivityPopupFrame(Occupant occupant, JFrame jFrame) {
         //this.Occupant = occupant;
-        this.Occupant = occupant;
-        this.Jframe = JFrame;
+        this.occupant = occupant;
+        this.jFrame = jFrame;
         initComponents();
-        this.Jframe.setEnabled(false);
+        this.jFrame.setEnabled(false);
     }
 
     public Occupant getOccupant() {
-        return Occupant;
+        return occupant;
     }
 
     public void setOccupant(Occupant Occupant) {
-        this.Occupant = Occupant;
+        this.occupant = Occupant;
     }
 
     public JFrame getJframe() {
-        return Jframe;
+        return jFrame;
     }
 
     public void setJframe(JFrame Jframe) {
-        this.Jframe = Jframe;
+        this.jFrame = Jframe;
     }
-    
+
     public void setIconForJLableImage() {
 
-            switch(this.getOccupant().getName()){
-                case "Kiwi":
+        switch (this.getOccupant().getName()) {
+            case "Kiwi":
                 picActivitylbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi.png")));
                 break;
             case "Sandwich":
@@ -80,15 +81,15 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     public void setActivityTextArea(ActionType actiontype) {
         switch (actiontype) {
             case USE:
-                if(this.getOccupant().getName().equals("Trap")){
+                if (this.getOccupant().getName().equals("Trap")) {
                     this.activityLbl.setText("You trapped this predator.");
-                }else if(this.getOccupant().getName().equals("Screwdriver")){
+                } else if (this.getOccupant().getName().equals("Screwdriver")) {
                     this.activityLbl.setText("You fixed the broken trap.");
-                }else{
+                } else {
                     this.activityLbl.setText("You consumed this " + this.getOccupant().getName());
                 }
                 break;
@@ -102,8 +103,8 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
                 this.activityLbl.setText("You collected " + this.getOccupant().toString());
                 break;
         }
-    }   
-    
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,18 +175,19 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        this.Jframe.setEnabled(true);
+        this.jFrame.setEnabled(true);
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         this.dispose();
-        this.Jframe.setEnabled(true);
+        this.jFrame.setEnabled(true);
+        // Make the pnlIsland to get the focus to listen for the subsequent key release event
+        Main.gui.getPnlIsland().requestFocusInWindow();
     }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityLbl;

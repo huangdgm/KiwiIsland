@@ -19,6 +19,7 @@ import nz.ac.aut.ense701.gameModel.Kiwi;
 import nz.ac.aut.ense701.gameModel.MoveDirection;
 import nz.ac.aut.ense701.gameModel.Occupant;
 import nz.ac.aut.ense701.gameModel.Position;
+import nz.ac.aut.ense701.main.Main;
 
 /*
  * User interface form for Kiwi Island.
@@ -302,6 +303,11 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         });
         listInventory.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listInventory.setVisibleRowCount(3);
+        listInventory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                listInventoryKeyReleased(evt);
+            }
+        });
         listInventory.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listInventoryValueChanged(evt);
@@ -460,6 +466,29 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         update();
     }//GEN-LAST:event_pnlIslandKeyReleased
 
+    private void listInventoryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listInventoryKeyReleased
+        // If the player wants to continue moving, he/she can use the arrow button which can re-gain the focus
+        Main.gui.getPnlIsland().requestFocusInWindow();
+
+        // According to the key pressed, move the position accordingly
+        switch (KeyEvent.getKeyText(evt.getKeyCode())) {
+            case "Left":
+                game.playerMove(MoveDirection.WEST);
+                break;
+            case "Up":
+                game.playerMove(MoveDirection.NORTH);
+                break;
+            case "Right":
+                game.playerMove(MoveDirection.EAST);
+                break;
+            case "Down":
+                game.playerMove(MoveDirection.SOUTH);
+                break;
+        }
+
+        update();
+    }//GEN-LAST:event_listInventoryKeyReleased
+
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
         Object obj = listObjects.getSelectedValue();
         ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) obj, this);
@@ -475,10 +504,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         actPop.setActivityTextArea(ActionType.DROP);
         actPop.setVisible(true);
         game.dropItem(listInventory.getSelectedValue());
-        
-        // Requests that the pnlIsland Component gets the input focus
-        // so that it can capture the key release event
-        getPnlIsland().requestFocusInWindow();
     }// GEN-LAST:event_btnDropActionPerformed
 
     private void listObjectsValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_listObjectsValueChanged
@@ -496,10 +521,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         actPop.setActivityTextArea(ActionType.USE);
         actPop.setVisible(true);
         game.useItem(listInventory.getSelectedValue());
-        
-        // Requests that the pnlIsland Component gets the input focus
-        // so that it can capture the key release event
-        getPnlIsland().requestFocusInWindow();
     }// GEN-LAST:event_btnUseActionPerformed
 
     private void listInventoryValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_listInventoryValueChanged
@@ -546,7 +567,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 
             }
         }
-        
+
         // Requests that the pnlIsland Component gets the input focus
         // so that it can capture the key release event
         getPnlIsland().requestFocusInWindow();

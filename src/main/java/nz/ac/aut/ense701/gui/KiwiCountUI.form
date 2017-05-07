@@ -310,6 +310,7 @@
                         <Property name="visibleRowCount" type="int" value="3"/>
                       </Properties>
                       <Events>
+                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="listInventoryKeyReleased"/>
                         <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="listInventoryValueChanged"/>
                       </Events>
                     </Component>

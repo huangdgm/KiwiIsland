@@ -155,6 +155,7 @@ public class GridSquarePanel extends javax.swing.JPanel {
             GridSquareInfoFrame gridSquareInfoFrame = new GridSquareInfoFrame(game, row, column);
             gridSquareInfoFrame.setVisible(true);
 
+            // Disable the main gui window once the GridSquareInfoFrame is opened
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.setEnabled(false);
         }
