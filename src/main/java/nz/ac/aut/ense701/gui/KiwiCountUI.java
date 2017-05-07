@@ -448,45 +448,15 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
     }// </editor-fold>//GEN-END:initComponents
 
     private void pnlIslandKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnlIslandKeyReleased
-        switch (KeyEvent.getKeyText(evt.getKeyCode())) {
-            case "Left":
-                game.playerMove(MoveDirection.WEST);
-                break;
-            case "Up":
-                game.playerMove(MoveDirection.NORTH);
-                break;
-            case "Right":
-                game.playerMove(MoveDirection.EAST);
-                break;
-            case "Down":
-                game.playerMove(MoveDirection.SOUTH);
-                break;
-        }
-
-        update();
+        movePlayerPosition(evt);
     }//GEN-LAST:event_pnlIslandKeyReleased
 
     private void listInventoryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listInventoryKeyReleased
-        // If the player wants to continue moving, he/she can use the arrow button which can re-gain the focus
+        // If the player wants to continue moving, he/she can use the arrow button which can re-gain the focus on the pnlIsland
         Main.gui.getPnlIsland().requestFocusInWindow();
 
         // According to the key pressed, move the position accordingly
-        switch (KeyEvent.getKeyText(evt.getKeyCode())) {
-            case "Left":
-                game.playerMove(MoveDirection.WEST);
-                break;
-            case "Up":
-                game.playerMove(MoveDirection.NORTH);
-                break;
-            case "Right":
-                game.playerMove(MoveDirection.EAST);
-                break;
-            case "Down":
-                game.playerMove(MoveDirection.SOUTH);
-                break;
-        }
-
-        update();
+        movePlayerPosition(evt);
     }//GEN-LAST:event_listInventoryKeyReleased
 
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
@@ -598,5 +568,24 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
      */
     public javax.swing.JPanel getPnlIsland() {
         return pnlIsland;
+    }
+
+    private void movePlayerPosition(KeyEvent evt) {
+        switch (KeyEvent.getKeyText(evt.getKeyCode())) {
+            case "Left":
+                game.playerMove(MoveDirection.WEST);
+                break;
+            case "Up":
+                game.playerMove(MoveDirection.NORTH);
+                break;
+            case "Right":
+                game.playerMove(MoveDirection.EAST);
+                break;
+            case "Down":
+                game.playerMove(MoveDirection.SOUTH);
+                break;
+        }
+
+        update();
     }
 }
