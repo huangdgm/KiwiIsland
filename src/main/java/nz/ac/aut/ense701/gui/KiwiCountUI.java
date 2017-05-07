@@ -4,6 +4,9 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -23,103 +26,103 @@ import nz.ac.aut.ense701.gameModel.Position;
  * @author AS
  * @version July 2011
  */
-
 public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener {
 
-	/**
-	 * Creates a GUI for the KiwiIsland game.
-	 * 
-	 * @param game
-	 *            the game object to represent with this GUI.
-	 */
-	public KiwiCountUI(Game game) {
-		assert game != null : "Make sure game object is created before UI";
-		this.game = game;
-		setAsGameListener();
-		initComponents();
-		initIslandGrid();
-		update();
-	}
-        
-	/**
-	 * This method is called by the game model every time something changes.
-	 * Trigger an update.
-	 */
-	@Override
-	public void gameStateChanged() {
-		update();
+    /**
+     * Creates a GUI for the KiwiIsland game.
+     *
+     * @param game the game object to represent with this GUI.
+     */
+    public KiwiCountUI(Game game) {
+        assert game != null : "Make sure game object is created before UI";
+        this.game = game;
+        setAsGameListener();
 
-		// check for "game over" or "game won"
-		if (game.getState() == GameState.LOST) {
-			JOptionPane.showMessageDialog(this, game.getLoseMessage(), "Game over!", JOptionPane.INFORMATION_MESSAGE);
-			game.createNewGame();
-		} else if (game.getState() == GameState.WON) {
-			JOptionPane.showMessageDialog(this, game.getWinMessage(), "Well Done!", JOptionPane.INFORMATION_MESSAGE);
-			game.createNewGame();
-		} else if (game.messageForPlayer()) {
-			JOptionPane.showMessageDialog(this, game.getPlayerMessage(), "Important Information", JOptionPane.INFORMATION_MESSAGE);
-		}
-	}
+        initComponents();
+        initIslandGrid();
 
-	private void setAsGameListener() {
-		game.addGameEventListener(this);
-	}
+        update();
+    }
 
-	/**
-	 * Updates the state of the UI based on the state of the game.
-	 */
-	private void update() {
-		// update the grid square panels
-		Component[] components = pnlIsland.getComponents();
-		for (Component c : components) {
-			// all components in the panel are GridSquarePanels,
-			// so we can safely cast
-			GridSquarePanel gsp = (GridSquarePanel) c;
-			gsp.update();
-		}
+    /**
+     * This method is called by the game model every time something changes.
+     * Trigger an update.
+     */
+    @Override
+    public void gameStateChanged() {
+        update();
 
-		// update player information
-		int[] playerValues = game.getPlayerValues();
-		txtPlayerName.setText(game.getPlayerName());
-		progPlayerStamina.setMaximum(playerValues[Game.MAXSTAMINA_INDEX]);
-		progPlayerStamina.setValue(playerValues[Game.STAMINA_INDEX]);
-		progBackpackWeight.setMaximum(playerValues[Game.MAXWEIGHT_INDEX]);
-		progBackpackWeight.setValue(playerValues[Game.WEIGHT_INDEX]);
-		progBackpackSize.setMaximum(playerValues[Game.MAXSIZE_INDEX]);
-		progBackpackSize.setValue(playerValues[Game.SIZE_INDEX]);
+        // check for "game over" or "game won"
+        if (game.getState() == GameState.LOST) {
+            JOptionPane.showMessageDialog(this, game.getLoseMessage(), "Game over!", JOptionPane.INFORMATION_MESSAGE);
+            game.createNewGame();
+        } else if (game.getState() == GameState.WON) {
+            JOptionPane.showMessageDialog(this, game.getWinMessage(), "Well Done!", JOptionPane.INFORMATION_MESSAGE);
+            game.createNewGame();
+        } else if (game.messageForPlayer()) {
+            JOptionPane.showMessageDialog(this, game.getPlayerMessage(), "Important Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
-		// Update Kiwi and Predator information
-		txtKiwisCounted.setText(Integer.toString(game.getKiwiCount()));
-		txtPredatorsLeft.setText(Integer.toString(game.getPredatorsRemaining()));
+    private void setAsGameListener() {
+        game.addGameEventListener(this);
+    }
 
-		// update inventory list
-		listInventory.setListData(game.getPlayerInventory());
-		listInventory.clearSelection();
-		listInventory.setToolTipText(null);
-		btnUse.setEnabled(false);
-		btnDrop.setEnabled(false);
+    /**
+     * Updates the state of the UI based on the state of the game.
+     */
+    private void update() {
+        // update the grid square panels
+        Component[] components = pnlIsland.getComponents();
+        for (Component c : components) {
+            // all components in the panel are GridSquarePanels,
+            // so we can safely cast
+            GridSquarePanel gsp = (GridSquarePanel) c;
+            gsp.update();
+        }
 
-		// update list of visible objects
-		listObjects.setListData(game.getOccupantsPlayerPosition());
-		listObjects.clearSelection();
-		listObjects.setToolTipText(null);
-		btnCollect.setEnabled(false);
-		btnCount.setEnabled(false);
+        // update player information
+        int[] playerValues = game.getPlayerValues();
+        txtPlayerName.setText(game.getPlayerName());
+        progPlayerStamina.setMaximum(playerValues[Game.MAXSTAMINA_INDEX]);
+        progPlayerStamina.setValue(playerValues[Game.STAMINA_INDEX]);
+        progBackpackWeight.setMaximum(playerValues[Game.MAXWEIGHT_INDEX]);
+        progBackpackWeight.setValue(playerValues[Game.WEIGHT_INDEX]);
+        progBackpackSize.setMaximum(playerValues[Game.MAXSIZE_INDEX]);
+        progBackpackSize.setValue(playerValues[Game.SIZE_INDEX]);
 
-		// update movement buttons
-		btnMoveNorth.setEnabled(game.isPlayerMovePossible(MoveDirection.NORTH));
-		btnMoveEast.setEnabled(game.isPlayerMovePossible(MoveDirection.EAST));
-		btnMoveSouth.setEnabled(game.isPlayerMovePossible(MoveDirection.SOUTH));
-		btnMoveWest.setEnabled(game.isPlayerMovePossible(MoveDirection.WEST));
-	}
+        // Update Kiwi and Predator information
+        txtKiwisCounted.setText(Integer.toString(game.getKiwiCount()));
+        txtPredatorsLeft.setText(Integer.toString(game.getPredatorsRemaining()));
 
-	/**
-	 * This method is called from within the constructor to initialize the form.
-	 * WARNING: Do NOT modify this code. The content of this method is always
-	 * regenerated by the Form Editor.
-	 */
-	@SuppressWarnings("unchecked")
-	// <editor-fold defaultstate="collapsed" desc="Generated
+        // update inventory list
+        listInventory.setListData(game.getPlayerInventory());
+        listInventory.clearSelection();
+        listInventory.setToolTipText(null);
+        btnUse.setEnabled(false);
+        btnDrop.setEnabled(false);
+
+        // update list of visible objects
+        listObjects.setListData(game.getOccupantsPlayerPosition());
+        listObjects.clearSelection();
+        listObjects.setToolTipText(null);
+        btnCollect.setEnabled(false);
+        btnCount.setEnabled(false);
+
+        // update movement buttons
+        btnMoveNorth.setEnabled(game.isPlayerMovePossible(MoveDirection.NORTH));
+        btnMoveEast.setEnabled(game.isPlayerMovePossible(MoveDirection.EAST));
+        btnMoveSouth.setEnabled(game.isPlayerMovePossible(MoveDirection.SOUTH));
+        btnMoveWest.setEnabled(game.isPlayerMovePossible(MoveDirection.WEST));
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
@@ -163,6 +166,12 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 
         pnlContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlContent.setLayout(new java.awt.BorderLayout(10, 0));
+
+        pnlIsland.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pnlIslandKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlIslandLayout = new javax.swing.GroupLayout(pnlIsland);
         pnlIsland.setLayout(pnlIslandLayout);
@@ -518,68 +527,87 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveEastActionPerformed
-		game.playerMove(MoveDirection.EAST);
-                update();
-	}// GEN-LAST:event_btnMoveEastActionPerformed
+    private void pnlIslandKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pnlIslandKeyReleased
+        switch (KeyEvent.getKeyText(evt.getKeyCode())) {
+            case "Left":
+                game.playerMove(MoveDirection.WEST);
+                break;
+            case "Up":
+                game.playerMove(MoveDirection.NORTH);
+                break;
+            case "Right":
+                game.playerMove(MoveDirection.EAST);
+                break;
+            case "Down":
+                game.playerMove(MoveDirection.SOUTH);
+                break;
+        }
 
-	private void btnMoveNorthActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveNorthActionPerformed
-		game.playerMove(MoveDirection.NORTH);
-                update();
-	}// GEN-LAST:event_btnMoveNorthActionPerformed
+        update();
+    }//GEN-LAST:event_pnlIslandKeyReleased
 
-	private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveSouctthAionPerformed
-		game.playerMove(MoveDirection.SOUTH);
-                update();
-	}// GEN-LAST:event_btnMoveSouthActionPerformed
+    private void btnMoveEastActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveEastActionPerformed
+        game.playerMove(MoveDirection.EAST);
+        update();
+    }// GEN-LAST:event_btnMoveEastActionPerformed
 
-	private void btnMoveWestActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveWestActionPerformed
-		game.playerMove(MoveDirection.WEST);
-                update();
-	}// GEN-LAST:event_btnMoveWestActionPerformed
+    private void btnMoveNorthActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveNorthActionPerformed
+        game.playerMove(MoveDirection.NORTH);
+        update();
+    }// GEN-LAST:event_btnMoveNorthActionPerformed
 
-	private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
-		Object obj = listObjects.getSelectedValue();
-                                            ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant)obj, this);
-                                            actPop.setIconForJLableImage();
-                                            actPop.setActivityTextArea(ActionType.COLLECT);
-                                            actPop.setVisible(true);
-		game.collectItem(obj);
-	}// GEN-LAST:event_btnCollectActionPerformed
+    private void btnMoveSouthActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveSouctthAionPerformed
+        game.playerMove(MoveDirection.SOUTH);
+        update();
+    }// GEN-LAST:event_btnMoveSouthActionPerformed
 
-	private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDropActionPerformed
-                                            ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant)listInventory.getSelectedValue(), this);
-                                            actPop.setIconForJLableImage();
-                                            actPop.setActivityTextArea(ActionType.DROP);
-                                            actPop.setVisible(true);
-		game.dropItem(listInventory.getSelectedValue());
-	}// GEN-LAST:event_btnDropActionPerformed
+    private void btnMoveWestActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMoveWestActionPerformed
+        game.playerMove(MoveDirection.WEST);
+        update();
+    }// GEN-LAST:event_btnMoveWestActionPerformed
 
-	private void listObjectsValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_listObjectsValueChanged
-		Object occ = listObjects.getSelectedValue();
-		if (occ != null) {
-			btnCollect.setEnabled(game.canCollect(occ));
-			btnCount.setEnabled(game.canCount(occ));
-			listObjects.setToolTipText(game.getOccupantDescription(occ));
-		}
-	}// GEN-LAST:event_listObjectsValueChanged
+    private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
+        Object obj = listObjects.getSelectedValue();
+        ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) obj, this);
+        actPop.setIconForJLableImage();
+        actPop.setActivityTextArea(ActionType.COLLECT);
+        actPop.setVisible(true);
+        game.collectItem(obj);
+    }// GEN-LAST:event_btnCollectActionPerformed
 
-	private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUseActionPerformed
-                                            ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant)listInventory.getSelectedValue(), this);
-                                            actPop.setIconForJLableImage();
-                                            actPop.setActivityTextArea(ActionType.USE);
-                                            actPop.setVisible(true);
-		game.useItem(listInventory.getSelectedValue());
-	}// GEN-LAST:event_btnUseActionPerformed
+    private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDropActionPerformed
+        ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) listInventory.getSelectedValue(), this);
+        actPop.setIconForJLableImage();
+        actPop.setActivityTextArea(ActionType.DROP);
+        actPop.setVisible(true);
+        game.dropItem(listInventory.getSelectedValue());
+    }// GEN-LAST:event_btnDropActionPerformed
 
-	private void listInventoryValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_listInventoryValueChanged
-		Object item = listInventory.getSelectedValue();
-		btnDrop.setEnabled(true);
-		if (item != null) {
-			btnUse.setEnabled(game.canUse(item));
-			listInventory.setToolTipText(game.getOccupantDescription(item));
-		}
-	}// GEN-LAST:event_listInventoryValueChanged
+    private void listObjectsValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_listObjectsValueChanged
+        Object occ = listObjects.getSelectedValue();
+        if (occ != null) {
+            btnCollect.setEnabled(game.canCollect(occ));
+            btnCount.setEnabled(game.canCount(occ));
+            listObjects.setToolTipText(game.getOccupantDescription(occ));
+        }
+    }// GEN-LAST:event_listObjectsValueChanged
+
+    private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUseActionPerformed
+        ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) listInventory.getSelectedValue(), this);
+        actPop.setIconForJLableImage();
+        actPop.setActivityTextArea(ActionType.USE);
+        actPop.setVisible(true);
+        game.useItem(listInventory.getSelectedValue());
+    }// GEN-LAST:event_btnUseActionPerformed
+
+    private void listInventoryValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_listInventoryValueChanged
+        Object item = listInventory.getSelectedValue();
+        btnDrop.setEnabled(true);
+        if (item != null) {
+            btnUse.setEnabled(game.canUse(item));
+            listInventory.setToolTipText(game.getOccupantDescription(item));
+        }
+    }// GEN-LAST:event_listInventoryValueChanged
 
     private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCountActionPerformed
         if (listObjects.getSelectedValue().toString().equals("Kiwi")) {
@@ -592,31 +620,35 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         }
     }// GEN-LAST:event_btnCountActionPerformed
 
-	/**
-	 * Creates and initialises the island grid.
-	 */
-	private void initIslandGrid() {
-		// Add the grid
-		int rows = game.getNumRows();
-		int columns = game.getNumColumns();
-		// set up the layout manager for the island grid panel
-		pnlIsland.setLayout(new GridLayout(rows, columns));
-		// create all the grid square panels and add them to the panel
-		// the layout manager of the panel takes care of assigning them to the
-		// the right position
-		for (int row = 0; row < rows; row++) {
-			for (int col = 0; col < columns; col++) {
-                                    if(row == 0 && col == 2) {
-                                        GridSquarePanel gsp = new GridSquarePanel(game, 0, 2);
-                                        gsp.getLblText().setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi.png")));
-                                        pnlIsland.add(gsp);
-                                    } else {
-                                        pnlIsland.add(new GridSquarePanel(game, row, col));
-                                    }
-                            
-			}
-		}
-	}
+    /**
+     * Creates and initialises the island grid.
+     */
+    private void initIslandGrid() {
+        // Add the grid
+        int rows = game.getNumRows();
+        int columns = game.getNumColumns();
+        // set up the layout manager for the island grid panel
+        pnlIsland.setLayout(new GridLayout(rows, columns));
+        // create all the grid square panels and add them to the panel
+        // the layout manager of the panel takes care of assigning them to the
+        // the right position
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns; col++) {
+                if (row == 0 && col == 2) {
+                    GridSquarePanel gsp = new GridSquarePanel(game, 0, 2);
+                    gsp.getLblText().setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi.png")));
+                    pnlIsland.add(gsp);
+                } else {
+                    pnlIsland.add(new GridSquarePanel(game, row, col));
+                }
+
+            }
+        }
+        
+        // Requests that the pnlIsland Component gets the input focus
+        // so that it can capture the key release event
+        pnlIsland.requestFocusInWindow();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCollect;
@@ -640,5 +672,5 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
     private javax.swing.JLabel txtPredatorsLeft;
     // End of variables declaration//GEN-END:variables
 
-	private Game game;
+    private Game game;
 }
