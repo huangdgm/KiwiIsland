@@ -28,14 +28,6 @@ public class GridSquarePanel extends javax.swing.JPanel {
      * @param row the row to represent
      * @param column the column to represent
      */
-//    public GridSquarePanel(Game game, int row, int column, ImageIcon ii) {
-//        this.game = game;
-//        this.row = row;
-//        this.column = column;
-//        this.lblText.setIcon(ii);
-//        initComponents();
-//        //this.ii = ii;
-//    }
     public GridSquarePanel(Game game, int row, int column) {
         this.game = game;
         this.row = row;

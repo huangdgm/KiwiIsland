@@ -25,14 +25,12 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
      */
     private Occupant occupant;
     private JFrame jFrame;
-    //private Game game;
 
     public ActivityPopupFrame() {
         initComponents();
     }
 
     public ActivityPopupFrame(Occupant occupant, JFrame jFrame) {
-        //this.Occupant = occupant;
         this.occupant = occupant;
         this.jFrame = jFrame;
         initComponents();
