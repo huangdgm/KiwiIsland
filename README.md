@@ -5,4 +5,4 @@ A kiwi island computer game.
 Dong, Eric, Jayce
 
 # Version
-1.0
+1.1
