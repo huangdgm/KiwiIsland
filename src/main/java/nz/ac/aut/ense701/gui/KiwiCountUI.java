@@ -28,7 +28,7 @@ import nz.ac.aut.ense701.main.Main;
  * @version July 2011
  */
 public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener {
-
+    
     /**
      * Creates a GUI for the KiwiIsland game.
      *
