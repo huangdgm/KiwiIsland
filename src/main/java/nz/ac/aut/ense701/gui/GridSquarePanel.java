@@ -1,13 +1,10 @@
 package nz.ac.aut.ense701.gui;
 
 import java.awt.Color;
-import java.awt.Dialog;
 import java.util.Arrays;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -23,7 +20,7 @@ import nz.ac.aut.ense701.gameModel.Terrain;
  * @version 1.0 - created
  */
 public class GridSquarePanel extends javax.swing.JPanel {
-  
+
     /**
      * Creates new GridSquarePanel.
      *
@@ -31,17 +28,6 @@ public class GridSquarePanel extends javax.swing.JPanel {
      * @param row the row to represent
      * @param column the column to represent
      */
-//    public GridSquarePanel(Game game, int row, int column, ImageIcon ii) {
-//        this.game = game;
-//        this.row = row;
-//        this.column = column;
-//        this.lblText.setIcon(ii);
-//        initComponents();
-//        //this.ii = ii;
-//    }
-      
-	
-      
     public GridSquarePanel(Game game, int row, int column) {
         this.game = game;
         this.row = row;
@@ -63,19 +49,19 @@ public class GridSquarePanel extends javax.swing.JPanel {
 
         switch (terrain) {
             case SAND:
-                color = Color.YELLOW;
+                color = new Color(230, 255, 230);
                 break;
             case FOREST:
-                color = Color.GREEN;
+                color = new Color(179, 255, 179);
                 break;
             case WETLAND:
-                color = Color.BLUE;
+                color = new Color(128, 255, 128);
                 break;
             case SCRUB:
-                color = Color.DARK_GRAY;
+                color = new Color(26, 255, 26);
                 break;
             case WATER:
-                color = Color.CYAN;
+                color = new Color(0, 204, 0);
                 break;
             default:
                 color = Color.LIGHT_GRAY;
@@ -85,31 +71,27 @@ public class GridSquarePanel extends javax.swing.JPanel {
         if (squareExplored || squareVisible) {
             // Set the text of the JLabel according to the occupant
             lblText.setText(game.getOccupantStringRepresentation(row, column));
+            
             // Set the tool tip text for the GridSquarePanel
-            if(game.getIsland().getOccupants(new Position(game.getIsland(), row, column)).length != 0) {
+            if (game.getIsland().getOccupants(new Position(game.getIsland(), row, column)).length != 0) {
                 lblText.setToolTipText(Arrays.toString(game.getIsland().getOccupants(new Position(game.getIsland(), row, column))));
             }
-            
+
             // Set the colour. 
-            if (squareVisible && !squareExplored) {
-                // When explored the colour is brighter
-                color = new Color(Math.min(255, color.getRed() + 128),
-                        Math.min(255, color.getGreen() + 128),
-                        Math.min(255, color.getBlue() + 128));
-            }
             lblText.setBackground(color);
+            
             // set border colour according to 
             // whether the player is in the grid square or not
             setBorder(game.hasPlayer(row, column) ? activeBorder : normalBorder);
-            if(!game.hasPlayer(row, column)){
+
+            if (!game.hasPlayer(row, column)) {
                 setBorder(game.hasPlayer(row, column) ? activeBorder : normalBorder);
             }
-            if(game.hasPlayer(row, column)) {
-                
-                lblText.setHorizontalTextPosition(JLabel.CENTER);            
+
+            if (game.hasPlayer(row, column)) {
+                lblText.setHorizontalTextPosition(JLabel.CENTER);
                 lblText.setIcon(new ImageIcon(getClass().getResource("/icon_3.png")));
-             
-             } else {
+            } else {
                 lblText.setIcon(null);
             }
         } else {
@@ -117,7 +99,7 @@ public class GridSquarePanel extends javax.swing.JPanel {
             lblText.setBackground(null);
             setBorder(normalBorder);
         }
-        
+
     }
 
     /**
@@ -150,7 +132,7 @@ public class GridSquarePanel extends javax.swing.JPanel {
         // If the grid is visible or has the player inside, and there are one or more occupants in the grid, then this grid is clickable and a new GridSquareInfoFrame will pop up once the grid is clicked.
         Island island = game.getIsland();
         Position position = new Position(island, row, column);
-        
+
         if ((game.isVisible(row, column) || game.hasPlayer(row, column)) && island.getOccupants(position).length != 0) {
             GridSquareInfoFrame gridSquareInfoFrame = new GridSquareInfoFrame(game, row, column);
             gridSquareInfoFrame.setVisible(true);
