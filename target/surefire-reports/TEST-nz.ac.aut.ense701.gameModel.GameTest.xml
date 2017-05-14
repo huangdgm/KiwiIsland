@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="35" failures="0" name="nz.ac.aut.ense701.gameModel.GameTest" time="0.689" errors="0" skipped="0">
+<testsuite tests="35" failures="0" name="nz.ac.aut.ense701.gameModel.GameTest" time="0.767" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\bin"/>
-    <property name="java.vm.version" value="25.121-b13"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_112\jre\bin"/>
+    <property name="java.vm.version" value="25.112-b15"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
@@ -11,16 +11,16 @@
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
     <property name="file.encoding.pkg" value="sun.io"/>
     <property name="user.script" value=""/>
-    <property name="user.country" value="NZ"/>
+    <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="C:\Users\Jayce\Desktop\Software Engineering\KiwiIsland"/>
-    <property name="java.runtime.version" value="1.8.0_121-b13"/>
+    <property name="user.dir" value="C:\Users\xfn\Dropbox\AUT\COMP503 - P2\netbeans\KiwiIsland"/>
+    <property name="java.runtime.version" value="1.8.0_112-b15"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\endorsed"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_112\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\Jayce\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\xfn\AppData\Local\Temp\"/>
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
@@ -29,29 +29,29 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.2\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_121\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_66\bin;C:\Users\Jayce\AppData\Roaming\npm;C:\Program Files (x86)\Microsoft VS Code\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_112\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Java\jdk1.8.0_91\bin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Users\xfn\AppData\Local\Microsoft\WindowsApps;C:\Users\xfn\apache-maven-3.3.9\bin;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.0"/>
-    <property name="user.home" value="C:\Users\Jayce"/>
+    <property name="user.home" value="C:\Users\xfn"/>
     <property name="user.timezone" value="Pacific/Auckland"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="Cp1252"/>
-    <property name="user.name" value="Jayce"/>
+    <property name="user.name" value="xfn"/>
     <property name="java.class.path" value="C:\Program Files\NetBeans 8.2\java\maven\boot\plexus-classworlds-2.4.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_121\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar clean install"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_112\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.2\java\maven-nblib\netbeans-eventspy.jar test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
-    <property name="java.version" value="1.8.0_121"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
-    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_121\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_121\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_121\jre\classes"/>
+    <property name="java.version" value="1.8.0_112"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_112\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_112\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_112\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_112\jre\classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="maven.home" value="C:\Program Files\NetBeans 8.2\java\maven"/>
     <property name="file.separator" value="\"/>
@@ -61,39 +61,39 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testScanWikiDescription" time="0.062"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetNumRows" time="0.047"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCollectValid" time="0.061"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveValidNoHazards" time="0.015"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testIsPlayerMovePossibleInvalidMove" time="0.012"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseFoodValid" time="0.015"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseToolNoTrap" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNonFatalHazardDead" time="0"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemTrapFinalPredator" time="0.031"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemBrokenTrap" time="0.031"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetNumColumns" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveFatalHazard" time="0.031"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveDeadPlayer" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveToInvalidPosition" time="0.015"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTrapNoPredator" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testDropValid" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetKiwiCountInitial" time="0.015"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testIsPlayerMovePossibleValidMove" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanCollectNotCollectable" time="0.031"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseToolTrapNotBroken" time="0"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemToolFixTrap" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanCollectCollectable" time="0.015"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetInitialState" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemFoodCausesIncrease" time="0"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNotEnoughStamina" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemFoodNoIncrease" time="0.062"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetPlayerValues" time="0"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTrapValid" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetPlayer" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCollectNotCollectable" time="0"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemTrap" time="0.015"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testDropNotValidPositionFull" time="0"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCountKiwi" time="0.016"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTool" time="0"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNonFatalHazardNotDead" time="0.023"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetNumRows" time="0.098"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCollectValid" time="0.062"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveValidNoHazards" time="0.028"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testIsPlayerMovePossibleInvalidMove" time="0.024"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseFoodValid" time="0.018"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseToolNoTrap" time="0.018"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNonFatalHazardDead" time="0.02"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemTrapFinalPredator" time="0.026"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemBrokenTrap" time="0.037"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetNumColumns" time="0"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveFatalHazard" time="0.014"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveDeadPlayer" time="0.014"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveToInvalidPosition" time="0.018"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTrapNoPredator" time="0.011"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testDropValid" time="0.009"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetKiwiCountInitial" time="0.036"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testIsPlayerMovePossibleValidMove" time="0"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanCollectNotCollectable" time="0.01"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseToolTrapNotBroken" time="0.014"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemToolFixTrap" time="0.011"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanScanWikiDescriptionFromIslandDataFile" time="0.014"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanCollectCollectable" time="0.027"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetInitialState" time="0.017"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemFoodCausesIncrease" time="0.054"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNotEnoughStamina" time="0.014"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemFoodNoIncrease" time="0.01"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetPlayerValues" time="0.018"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTrapValid" time="0.023"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetPlayer" time="0.008"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCollectNotCollectable" time="0.007"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemTrap" time="0.013"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testDropNotValidPositionFull" time="0.017"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCountKiwi" time="0.015"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTool" time="0.007"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNonFatalHazardNotDead" time="0.019"/>
 </testsuite>
