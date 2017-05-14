@@ -33,12 +33,6 @@ public class GridSquarePanel extends javax.swing.JPanel {
         this.row = row;
         this.column = column;
         initComponents();
-        //this.ii = ii;
-    }
-
-    //default constructor
-    GridSquarePanel() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     /**
@@ -76,7 +70,7 @@ public class GridSquarePanel extends javax.swing.JPanel {
         if (squareExplored || squareVisible) {
             // Set the text of the JLabel according to the occupant
             lblText.setText(game.getOccupantStringRepresentation(row, column));
-            
+
             // Set the tool tip text for the GridSquarePanel
             if (game.getIsland().getOccupants(new Position(game.getIsland(), row, column)).length != 0) {
                 lblText.setToolTipText(Arrays.toString(game.getIsland().getOccupants(new Position(game.getIsland(), row, column))));
@@ -84,7 +78,7 @@ public class GridSquarePanel extends javax.swing.JPanel {
 
             // Set the colour. 
             lblText.setBackground(color);
-            
+
             // set border colour according to 
             // whether the player is in the grid square or not
             setBorder(game.hasPlayer(row, column) ? activeBorder : normalBorder);
@@ -96,33 +90,13 @@ public class GridSquarePanel extends javax.swing.JPanel {
             if (game.hasPlayer(row, column)) {
                 lblText.setHorizontalTextPosition(JLabel.CENTER);
 
-                boolean isIconSet = true;
-                if (isIconSet) {
-                    //CharacterSelectFrame cs = new CharacterSelectFrame();
-                    //cs.setVisible(true);
-
-                    if (CharacterSelectFrame.clicked1) {
-                        isIconSet = false;
-
-                        lblText.setIcon(new ImageIcon(getClass().getResource("/icon_2.png")));
-                        //cs.setVisible(false);
-                        //cs.dispose();
-
-                    } else if (CharacterSelectFrame.clicked2) {
-                        isIconSet = false;
-
-                        lblText.setIcon(new ImageIcon(getClass().getResource("/icon_3.png")));
-                        //cs.setVisible(false);
-                        //cs.dispose();
-                    } else if (CharacterSelectFrame.clicked3) {
-                        isIconSet = false;
-
-                        lblText.setIcon(new ImageIcon(getClass().getResource("/icon.png")));
-                        //cs.setVisible(false);
-                        //cs.dispose();
-                    }
-
-                }// end if
+                if (CharacterSelectFrame.isIcon1Clicked) {
+                    lblText.setIcon(new ImageIcon(getClass().getResource("/icon_2.png")));
+                } else if (CharacterSelectFrame.isIcon2Clicked) {
+                    lblText.setIcon(new ImageIcon(getClass().getResource("/icon_3.png")));
+                } else if (CharacterSelectFrame.isIcon3Clicked) {
+                    lblText.setIcon(new ImageIcon(getClass().getResource("/icon.png")));
+                }
             } else {
                 lblText.setIcon(null);
             }
@@ -184,7 +158,6 @@ public class GridSquarePanel extends javax.swing.JPanel {
 
     private Game game;
     private int row, column;
-    //private ImageIcon ii;
 
     private static final Border normalBorder = new LineBorder(Color.BLACK, 1);
     private static final Border activeBorder = new LineBorder(Color.RED, 3);

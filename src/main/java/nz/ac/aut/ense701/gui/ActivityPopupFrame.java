@@ -5,12 +5,8 @@
  */
 package nz.ac.aut.ense701.gui;
 
-import java.awt.Frame;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import nz.ac.aut.ense701.gameModel.ActionType;
-import nz.ac.aut.ense701.gameModel.Game;
-import nz.ac.aut.ense701.gameModel.Item;
 import nz.ac.aut.ense701.gameModel.Occupant;
 import nz.ac.aut.ense701.main.Main;
 
@@ -54,7 +50,6 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
     }
 
     public void setIconForJLableImage() {
-
         switch (this.getOccupant().getName()) {
             case "Kiwi":
                 picActivitylbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kiwi.png")));
@@ -171,7 +166,6 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        // TODO add your handling code here:
         this.dispose();
         this.jFrame.setEnabled(true);
     }//GEN-LAST:event_okButtonActionPerformed
@@ -186,7 +180,6 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel activityLbl;
     private javax.swing.JButton okButton;

@@ -19,7 +19,7 @@ import nz.ac.aut.ense701.main.Main;
  * This class represents the visual frame from where the occupants can be
  * displayed and the action buttons can be performed on the occupants.
  *
- * @author Administrator
+ * @author Dong Huang
  */
 public class GridSquareInfoFrame extends javax.swing.JFrame {
 
@@ -372,26 +372,26 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
      */
     private void jButtonCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCountActionPerformed
         game.countKiwi();
-        
-         for (Occupant occupant : game.getIsland().getOccupants(position)) {
-             if (occupant instanceof Kiwi) {
-                 Kiwi kiwi = (Kiwi) occupant;
-                 ActivityPopupFrame actPop = new ActivityPopupFrame(kiwi, this);
-                 actPop.setIconForJLableImage();
-                 actPop.setActivityTextArea(ActionType.COUNT);
-                 actPop.setVisible(true);
+
+        for (Occupant occupant : game.getIsland().getOccupants(position)) {
+            if (occupant instanceof Kiwi) {
+                Kiwi kiwi = (Kiwi) occupant;
+                ActivityPopupFrame actPop = new ActivityPopupFrame(kiwi, this);
+                actPop.setIconForJLableImage();
+                actPop.setActivityTextArea(ActionType.COUNT);
+                actPop.setVisible(true);
             }
         }
-        
+
         // After the kiwi was counted, disable the count button
         jButtonCount.setEnabled(false);
 
     }//GEN-LAST:event_jButtonCountActionPerformed
 
     /**
-     * This method is called when the wiki button is pressed.
-     * The method is used to retrieve the occupant value and set the uri for that occupant.
-     * 
+     * This method is called when the wiki button is pressed. The method is used
+     * to retrieve the occupant value and set the uri for that occupant.
+     *
      * @param evt The mouse click event
      * @return void
      */
@@ -549,8 +549,9 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
 
     /**
      * This helper method sets the uri value according to the occupant type.
-     * 
-     * @param occupant Specify the type of occupant from which the uri value can be set
+     *
+     * @param occupant Specify the type of occupant from which the uri value can
+     * be set
      * @return String The value of the URI of the occupant.
      */
     private String setURI(Occupant occupant) {

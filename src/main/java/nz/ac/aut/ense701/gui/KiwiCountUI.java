@@ -93,13 +93,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         listInventory.setToolTipText(null);
         btnUse.setEnabled(false);
         btnDrop.setEnabled(false);
-
-        // update list of visible objects
-        listObjects.setListData(game.getOccupantsPlayerPosition());
-        listObjects.clearSelection();
-        listObjects.setToolTipText(null);
-        btnCollect.setEnabled(false);
-        btnCount.setEnabled(false);
     }
 
     /**
@@ -135,14 +128,10 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         listInventory = new javax.swing.JList();
         btnDrop = new javax.swing.JButton();
         btnUse = new javax.swing.JButton();
-        javax.swing.JPanel pnlObjects = new javax.swing.JPanel();
-        javax.swing.JScrollPane scrlObjects = new javax.swing.JScrollPane();
-        listObjects = new javax.swing.JList();
-        btnCollect = new javax.swing.JButton();
-        btnCount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
+        setAlwaysOnTop(true);
 
         pnlContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlContent.setLayout(new java.awt.BorderLayout(10, 0));
@@ -356,86 +345,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         gridBagConstraints.weighty = 1.0;
         pnlControls.add(pnlInventory, gridBagConstraints);
 
-        pnlObjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Objects"));
-        java.awt.GridBagLayout pnlObjectsLayout = new java.awt.GridBagLayout();
-        pnlObjectsLayout.columnWidths = new int[] {0, 5, 0};
-        pnlObjectsLayout.rowHeights = new int[] {0, 5, 0};
-        pnlObjects.setLayout(pnlObjectsLayout);
-
-        listObjects.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        listObjects.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listObjects.setVisibleRowCount(3);
-        listObjects.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                listObjectsKeyReleased(evt);
-            }
-        });
-        listObjects.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                listObjectsValueChanged(evt);
-            }
-        });
-        scrlObjects.setViewportView(listObjects);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlObjects.add(scrlObjects, gridBagConstraints);
-
-        btnCollect.setText("Collect");
-        btnCollect.setToolTipText("");
-        btnCollect.setMaximumSize(new java.awt.Dimension(61, 23));
-        btnCollect.setMinimumSize(new java.awt.Dimension(61, 23));
-        btnCollect.setPreferredSize(new java.awt.Dimension(61, 23));
-        btnCollect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCollectActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlObjects.add(btnCollect, gridBagConstraints);
-
-        btnCount.setText("Count");
-        btnCount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCountActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        pnlObjects.add(btnCount, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        pnlControls.add(pnlObjects, gridBagConstraints);
-
         pnlContent.add(pnlControls, java.awt.BorderLayout.EAST);
 
         getContentPane().add(pnlContent, java.awt.BorderLayout.CENTER);
@@ -455,23 +364,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         movePlayerPosition(evt);
     }//GEN-LAST:event_listInventoryKeyReleased
 
-    private void listObjectsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listObjectsKeyReleased
-        // If the player wants to continue moving, he/she can use the arrow button which can re-gain the focus on the pnlIsland
-        Main.gui.getPnlIsland().requestFocusInWindow();
-
-        // According to the key pressed, move the position accordingly
-        movePlayerPosition(evt);
-    }//GEN-LAST:event_listObjectsKeyReleased
-
-    private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
-        Object obj = listObjects.getSelectedValue();
-        ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) obj, this);
-        actPop.setIconForJLableImage();
-        actPop.setActivityTextArea(ActionType.COLLECT);
-        actPop.setVisible(true);
-        game.collectItem(obj);
-    }// GEN-LAST:event_btnCollectActionPerformed
-
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDropActionPerformed
         ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) listInventory.getSelectedValue(), this);
         actPop.setIconForJLableImage();
@@ -479,15 +371,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         actPop.setVisible(true);
         game.dropItem(listInventory.getSelectedValue());
     }// GEN-LAST:event_btnDropActionPerformed
-
-    private void listObjectsValueChanged(javax.swing.event.ListSelectionEvent evt) {// GEN-FIRST:event_listObjectsValueChanged
-        Object occ = listObjects.getSelectedValue();
-        if (occ != null) {
-            btnCollect.setEnabled(game.canCollect(occ));
-            btnCount.setEnabled(game.canCount(occ));
-            listObjects.setToolTipText(game.getOccupantDescription(occ));
-        }
-    }// GEN-LAST:event_listObjectsValueChanged
 
     private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUseActionPerformed
         ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) listInventory.getSelectedValue(), this);
@@ -505,17 +388,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
             listInventory.setToolTipText(game.getOccupantDescription(item));
         }
     }// GEN-LAST:event_listInventoryValueChanged
-
-    private void btnCountActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCountActionPerformed
-        if (listObjects.getSelectedValue().toString().equals("Kiwi")) {
-            Object ojc = listObjects.getSelectedValue();
-            ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) ojc, this);
-            actPop.setIconForJLableImage();
-            actPop.setActivityTextArea(ActionType.COUNT);
-            actPop.setVisible(true);
-            game.countKiwi();
-        }
-    }// GEN-LAST:event_btnCountActionPerformed
 
     /**
      * Creates and initialises the island grid.
@@ -548,14 +420,11 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCollect;
-    private javax.swing.JButton btnCount;
     private javax.swing.JButton btnDrop;
     private javax.swing.JButton btnUse;
     private javax.swing.JLabel lblKiwisCounted;
     private javax.swing.JLabel lblPredators;
     private javax.swing.JList listInventory;
-    private javax.swing.JList listObjects;
     private javax.swing.JPanel pnlIsland;
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;
