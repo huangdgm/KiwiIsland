@@ -100,6 +100,8 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         listObjects.setToolTipText(null);
         btnCollect.setEnabled(false);
         btnCount.setEnabled(false);
+        
+        
     }
 
     /**
@@ -130,6 +132,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         lblKiwisCounted = new javax.swing.JLabel();
         txtKiwisCounted = new javax.swing.JLabel();
         txtPredatorsLeft = new javax.swing.JLabel();
+        staminaRecovBtn = new javax.swing.JButton();
         javax.swing.JPanel pnlInventory = new javax.swing.JPanel();
         javax.swing.JScrollPane scrlInventory = new javax.swing.JScrollPane();
         listInventory = new javax.swing.JList();
@@ -158,7 +161,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         pnlIsland.setLayout(pnlIslandLayout);
         pnlIslandLayout.setHorizontalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
         pnlIslandLayout.setVerticalGroup(
             pnlIslandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,6 +276,14 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         pnlPlayerData.add(txtPredatorsLeft, gridBagConstraints);
+
+        staminaRecovBtn.setText("Recover");
+        staminaRecovBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staminaRecovBtnActionPerformed(evt);
+            }
+        });
+        pnlPlayerData.add(staminaRecovBtn, new java.awt.GridBagConstraints());
 
         pnlPlayer.add(pnlPlayerData, java.awt.BorderLayout.WEST);
 
@@ -450,6 +461,25 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         movePlayerPosition(evt);
     }//GEN-LAST:event_listInventoryKeyReleased
 
+    private void staminaRecovBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staminaRecovBtnActionPerformed
+        // TODO add your handling code here:
+        if (Integer.parseInt(this.txtKiwisCounted.getText()) >= 5) {//If the kiwi is counted about 5 or more,
+            //it will increase the stamina by 50%
+                int increase_option = JOptionPane.showConfirmDialog(btnCollect,
+                            "Do you want to increase stamina by 50%?", null, JOptionPane.YES_NO_OPTION);
+                if (increase_option == JOptionPane.YES_OPTION) {
+                    int getcurrsta = progPlayerStamina.getValue();
+                    double increasesta = getcurrsta * 0.5 + getcurrsta;
+                    this.game.getPlayer().increaseStamina(increasesta);
+                    this.progPlayerStamina.setValue(new Double(this.game.getPlayer().getStaminaLevel()).intValue());
+                    this.txtKiwisCounted.setText("0");
+                }
+        }else{//Otherwise, it should display the message where the num
+            //of kiwi is not enough.
+            JOptionPane.showMessageDialog(btnCollect, "The number of kiwi is not enough", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_staminaRecovBtnActionPerformed
+
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
         Object obj = listObjects.getSelectedValue();
         ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) obj, this);
@@ -501,6 +531,20 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
             actPop.setActivityTextArea(ActionType.COUNT);
             actPop.setVisible(true);
             game.countKiwi();
+            if (Integer.parseInt(this.txtKiwisCounted.getText()) >= 5) {//If the kiwi is counted about 5 or more,
+                //it will increase the stamina by 50%
+
+                int increase_option = JOptionPane.showConfirmDialog(btnCollect,
+                            "Do you want to increase stamina by 50%?", null, JOptionPane.YES_NO_OPTION);
+                if (increase_option == JOptionPane.YES_OPTION) {
+                    int getcurrsta = progPlayerStamina.getValue();
+                    double increasesta = getcurrsta * 0.5 + getcurrsta;
+                    this.game.getPlayer().increaseStamina(increasesta);
+                    this.progPlayerStamina.setValue(new Double(this.game.getPlayer().getStaminaLevel()).intValue());
+                    this.txtKiwisCounted.setText("0");
+                }
+
+            }
         }
     }// GEN-LAST:event_btnCountActionPerformed
 
@@ -547,6 +591,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;
     private javax.swing.JProgressBar progPlayerStamina;
+    private javax.swing.JButton staminaRecovBtn;
     private javax.swing.JLabel txtKiwisCounted;
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;
