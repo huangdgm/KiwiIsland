@@ -1,6 +1,7 @@
 package nz.ac.aut.ense701.main;
 
 import nz.ac.aut.ense701.gameModel.Game;
+import nz.ac.aut.ense701.gui.CharacterSelectFrame;
 import nz.ac.aut.ense701.gui.KiwiCountUI;
 
 /**
@@ -15,6 +16,7 @@ public class Main
     public static final Game game = new Game();
         
     // create the GUI for the game
+    public static final CharacterSelectFrame csf = new CharacterSelectFrame();
     public static final KiwiCountUI  gui  = new KiwiCountUI(game);
     
     /**
@@ -30,6 +32,7 @@ public class Main
             @Override
             public void run() 
             {
+                csf.setVisible(true);
                 gui.setVisible(true);
             }
         });

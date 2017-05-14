@@ -36,6 +36,11 @@ public class GridSquarePanel extends javax.swing.JPanel {
         //this.ii = ii;
     }
 
+    //default constructor
+    GridSquarePanel() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     /**
      * Updates the representation of the grid square panel.
      */
@@ -90,7 +95,34 @@ public class GridSquarePanel extends javax.swing.JPanel {
 
             if (game.hasPlayer(row, column)) {
                 lblText.setHorizontalTextPosition(JLabel.CENTER);
-                lblText.setIcon(new ImageIcon(getClass().getResource("/icon_3.png")));
+
+                boolean isIconSet = true;
+                if (isIconSet) {
+                    //CharacterSelectFrame cs = new CharacterSelectFrame();
+                    //cs.setVisible(true);
+
+                    if (CharacterSelectFrame.clicked1) {
+                        isIconSet = false;
+
+                        lblText.setIcon(new ImageIcon(getClass().getResource("/icon_2.png")));
+                        //cs.setVisible(false);
+                        //cs.dispose();
+
+                    } else if (CharacterSelectFrame.clicked2) {
+                        isIconSet = false;
+
+                        lblText.setIcon(new ImageIcon(getClass().getResource("/icon_3.png")));
+                        //cs.setVisible(false);
+                        //cs.dispose();
+                    } else if (CharacterSelectFrame.clicked3) {
+                        isIconSet = false;
+
+                        lblText.setIcon(new ImageIcon(getClass().getResource("/icon.png")));
+                        //cs.setVisible(false);
+                        //cs.dispose();
+                    }
+
+                }// end if
             } else {
                 lblText.setIcon(null);
             }

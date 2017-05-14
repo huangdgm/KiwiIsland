@@ -129,7 +129,7 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
 
         picActivitylbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        okButton.setFont(new java.awt.Font("ËÎÌå", 1, 12)); // NOI18N
+        okButton.setFont(new java.awt.Font("Ã‹ÃŽÃŒÃ¥", 1, 12)); // NOI18N
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

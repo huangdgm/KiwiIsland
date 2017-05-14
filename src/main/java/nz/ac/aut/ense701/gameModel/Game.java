@@ -645,7 +645,7 @@ public class Game {
     /**
      * Notifies all game event listeners about a change.
      */
-    private void notifyGameEventListeners() {
+    public void notifyGameEventListeners() {
         for (GameEventListener listener : eventListeners) {
             listener.gameStateChanged();
         }
