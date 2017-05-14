@@ -22,7 +22,7 @@ public class Player
     private boolean   alive;
     private Set<Item> backpack;
     private final double    maxBackpackWeight;
-    private final double    maxBackpackSize;   
+    private final double    maxBackpackSize;
     
     /**
      * Constructs a new player object.

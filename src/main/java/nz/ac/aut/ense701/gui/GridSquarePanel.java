@@ -110,28 +110,28 @@ public class GridSquarePanel extends javax.swing.JPanel {
 
                 boolean isIconSet = true;
                 if (isIconSet) {
-                    CharacterSelectFrame cs = new CharacterSelectFrame();
-                    cs.setVisible(true);
+                    //CharacterSelectFrame cs = new CharacterSelectFrame();
+                    //cs.setVisible(true);
 
                     if (CharacterSelectFrame.clicked1) {
                         isIconSet = false;
 
                         lblText.setIcon(new ImageIcon(getClass().getResource("/icon_2.png")));
-                        cs.setVisible(false);
-                        cs.dispose();
+                        //cs.setVisible(false);
+                        //cs.dispose();
 
                     } else if (CharacterSelectFrame.clicked2) {
                         isIconSet = false;
 
                         lblText.setIcon(new ImageIcon(getClass().getResource("/icon_3.png")));
-                        cs.setVisible(false);
-                        cs.dispose();
+                        //cs.setVisible(false);
+                        //cs.dispose();
                     } else if (CharacterSelectFrame.clicked3) {
                         isIconSet = false;
 
                         lblText.setIcon(new ImageIcon(getClass().getResource("/icon.png")));
-                        cs.setVisible(false);
-                        cs.dispose();
+                        //cs.setVisible(false);
+                        //cs.dispose();
                     }
 
                 }// end if

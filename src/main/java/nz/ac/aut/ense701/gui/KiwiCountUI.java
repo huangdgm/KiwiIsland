@@ -72,7 +72,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
     /**
      * Updates the state of the UI based on the state of the game.
      */
-    private void update() {
+    public void update() {
         // update the grid square panels
         Component[] components = getPnlIsland().getComponents();
         for (Component c : components) {
@@ -152,7 +152,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Kiwi Count");
-        setAlwaysOnTop(true);
 
         pnlContent.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlContent.setLayout(new java.awt.BorderLayout(10, 0));
@@ -297,11 +296,12 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         pnlInventory.setLayout(new java.awt.GridBagLayout());
 
         listInventory.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3" };
+            String[] strings = { "Item 1 ", "Item 2 ", "Item 3" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
         listInventory.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listInventory.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
         listInventory.setVisibleRowCount(3);
         listInventory.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -378,6 +378,11 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         });
         listObjects.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listObjects.setVisibleRowCount(3);
+        listObjects.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                listObjectsKeyReleased(evt);
+            }
+        });
         listObjects.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 listObjectsValueChanged(evt);
@@ -458,6 +463,14 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         // According to the key pressed, move the position accordingly
         movePlayerPosition(evt);
     }//GEN-LAST:event_listInventoryKeyReleased
+
+    private void listObjectsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listObjectsKeyReleased
+        // If the player wants to continue moving, he/she can use the arrow button which can re-gain the focus on the pnlIsland
+        Main.gui.getPnlIsland().requestFocusInWindow();
+
+        // According to the key pressed, move the position accordingly
+        movePlayerPosition(evt);
+    }//GEN-LAST:event_listObjectsKeyReleased
 
     private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
         Object obj = listObjects.getSelectedValue();
