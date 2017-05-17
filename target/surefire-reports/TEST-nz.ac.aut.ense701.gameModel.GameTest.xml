@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="35" failures="1" name="nz.ac.aut.ense701.gameModel.GameTest" time="0.494" errors="0" skipped="0">
+<testsuite tests="35" failures="1" name="nz.ac.aut.ense701.gameModel.GameTest" time="0.663" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_25\jre\bin"/>
@@ -44,7 +44,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="32"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_25\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.0.1\java\maven-nblib\netbeans-eventspy.jar install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.0.1\java\maven-nblib\netbeans-eventspy.jar clean install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -61,35 +61,35 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testScanWikiDescription" time="0.042"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetNumRows" time="0.047"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCollectValid" time="0.02"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveValidNoHazards" time="0.015"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testIsPlayerMovePossibleInvalidMove" time="0.012"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseFoodValid" time="0.012"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseToolNoTrap" time="0.011"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNonFatalHazardDead" time="0.011"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemTrapFinalPredator" time="0.011"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemBrokenTrap" time="0.011"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetNumColumns" time="0.009"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveFatalHazard" time="0.01"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveDeadPlayer" time="0.01"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveToInvalidPosition" time="0.012"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTrapNoPredator" time="0.009"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testDropValid" time="0.01"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetKiwiCountInitial" time="0.019"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testIsPlayerMovePossibleValidMove" time="0.028"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanCollectNotCollectable" time="0.013"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseToolTrapNotBroken" time="0.019"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemToolFixTrap" time="0.012"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanCollectCollectable" time="0.008"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetInitialState" time="0.013"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemFoodCausesIncrease" time="0.008"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNotEnoughStamina" time="0.015"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemFoodNoIncrease" time="0.009"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetPlayerValues" time="0.009"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTrapValid" time="0.012"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetPlayer" time="0.011">
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testScanWikiDescription" time="0.086"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetNumRows" time="0.051"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCollectValid" time="0.006"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveValidNoHazards" time="0"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testIsPlayerMovePossibleInvalidMove" time="0.008"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseFoodValid" time="0.041"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseToolNoTrap" time="0.006"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNonFatalHazardDead" time="0.018"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemTrapFinalPredator" time="0.012"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemBrokenTrap" time="0.016"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetNumColumns" time="0.026"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveFatalHazard" time="0.029"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveDeadPlayer" time="0.012"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveToInvalidPosition" time="0.01"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTrapNoPredator" time="0.022"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testDropValid" time="0.008"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetKiwiCountInitial" time="0.011"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testIsPlayerMovePossibleValidMove" time="0.018"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanCollectNotCollectable" time="0.021"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseToolTrapNotBroken" time="0.024"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemToolFixTrap" time="0.017"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanCollectCollectable" time="0.03"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetInitialState" time="0.006"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemFoodCausesIncrease" time="0.017"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNotEnoughStamina" time="0.017"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemFoodNoIncrease" time="0.019"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetPlayerValues" time="0.027"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTrapValid" time="0.013"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testGetPlayer" time="0.013">
     <failure message="Check player name" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Check player name
 	at junit.framework.Assert.fail(Assert.java:57)
 	at junit.framework.Assert.assertTrue(Assert.java:22)
@@ -154,10 +154,10 @@
 ---------------------------------------------------
 </system-out>
   </testcase>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCollectNotCollectable" time="0.008"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemTrap" time="0.007"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCollectNotCollectable" time="0.022"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testUseItemTrap" time="0"/>
   <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testDropNotValidPositionFull" time="0.009"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCountKiwi" time="0.008"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCountKiwi" time="0.009"/>
   <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testCanUseTool" time="0.011"/>
-  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNonFatalHazardNotDead" time="0.014"/>
+  <testcase classname="nz.ac.aut.ense701.gameModel.GameTest" name="testPlayerMoveNonFatalHazardNotDead" time="0.008"/>
 </testsuite>

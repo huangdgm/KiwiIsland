@@ -461,22 +461,29 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         movePlayerPosition(evt);
     }//GEN-LAST:event_listInventoryKeyReleased
 
+    //The action button is used to increase player's stamina after count
+    //at least 5 or more Kiwis
     private void staminaRecovBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staminaRecovBtnActionPerformed
         // TODO add your handling code here:
-        if (Integer.parseInt(this.txtKiwisCounted.getText()) >= 5) {//If the kiwi is counted about 5 or more,
+        if (this.game.getKiwiCount() >= 5) {//If the kiwi is counted about 5 or more,
             //it will increase the stamina by 50%
-                int increase_option = JOptionPane.showConfirmDialog(btnCollect,
-                            "Do you want to increase stamina by 50%?", null, JOptionPane.YES_NO_OPTION);
-                if (increase_option == JOptionPane.YES_OPTION) {
-                    int getcurrsta = progPlayerStamina.getValue();
-                    double increasesta = getcurrsta * 0.5 + getcurrsta;
-                    this.game.getPlayer().increaseStamina(increasesta);
-                    this.progPlayerStamina.setValue(new Double(this.game.getPlayer().getStaminaLevel()).intValue());
-                    this.txtKiwisCounted.setText("0");
-                }
-        }else{//Otherwise, it should display the message where the num
+
+            
+            PromptIncreaseStaminaDialog promptstamina = new PromptIncreaseStaminaDialog();
+            promptstamina.setNumKiwi(Integer.parseInt(this.txtKiwisCounted.getText()));
+            promptstamina.setGame(game);
+            promptstamina.setStamina(progPlayerStamina.getValue());
+            promptstamina.setJframe(this);
+            promptstamina.setLblKiwiCount(txtKiwisCounted);
+            promptstamina.setStaminaProgress(progPlayerStamina);
+            promptstamina.setVisible(true);
+            
+            txtKiwisCounted.setText(Integer.toString(game.getKiwiCount()));
+            progPlayerStamina.setValue(new Double(game.getPlayer().getStaminaLevel()).intValue());
+        }else if(this.game.getKiwiCount() < 5 || this.game.getKiwiCount() == 0){//Otherwise, it should display the message where the num
             //of kiwi is not enough.
-            JOptionPane.showMessageDialog(btnCollect, "The number of kiwi is not enough", "Error", JOptionPane.ERROR_MESSAGE);
+            NotEnoughCountedKiwiDialog notenough = new NotEnoughCountedKiwiDialog(this);
+            notenough.setVisible(true);
         }
     }//GEN-LAST:event_staminaRecovBtnActionPerformed
 
@@ -531,20 +538,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
             actPop.setActivityTextArea(ActionType.COUNT);
             actPop.setVisible(true);
             game.countKiwi();
-            if (Integer.parseInt(this.txtKiwisCounted.getText()) >= 5) {//If the kiwi is counted about 5 or more,
-                //it will increase the stamina by 50%
-
-                int increase_option = JOptionPane.showConfirmDialog(btnCollect,
-                            "Do you want to increase stamina by 50%?", null, JOptionPane.YES_NO_OPTION);
-                if (increase_option == JOptionPane.YES_OPTION) {
-                    int getcurrsta = progPlayerStamina.getValue();
-                    double increasesta = getcurrsta * 0.5 + getcurrsta;
-                    this.game.getPlayer().increaseStamina(increasesta);
-                    this.progPlayerStamina.setValue(new Double(this.game.getPlayer().getStaminaLevel()).intValue());
-                    this.txtKiwisCounted.setText("0");
-                }
-
-            }
         }
     }// GEN-LAST:event_btnCountActionPerformed
 

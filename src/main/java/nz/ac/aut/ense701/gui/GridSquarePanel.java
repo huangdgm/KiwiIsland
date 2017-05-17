@@ -5,6 +5,7 @@ import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -35,6 +36,7 @@ public class GridSquarePanel extends javax.swing.JPanel {
         initComponents();
         //this.ii = ii;
     }
+
 
     /**
      * Updates the representation of the grid square panel.
@@ -153,7 +155,6 @@ public class GridSquarePanel extends javax.swing.JPanel {
     private Game game;
     private int row, column;
     //private ImageIcon ii;
-
     private static final Border normalBorder = new LineBorder(Color.BLACK, 1);
     private static final Border activeBorder = new LineBorder(Color.RED, 3);
 }
