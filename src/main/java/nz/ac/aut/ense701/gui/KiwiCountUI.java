@@ -123,6 +123,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         lblKiwisCounted = new javax.swing.JLabel();
         txtKiwisCounted = new javax.swing.JLabel();
         txtPredatorsLeft = new javax.swing.JLabel();
+        staminaRecovBtn = new javax.swing.JButton();
         javax.swing.JPanel pnlInventory = new javax.swing.JPanel();
         javax.swing.JScrollPane scrlInventory = new javax.swing.JScrollPane();
         listInventory = new javax.swing.JList();
@@ -267,6 +268,16 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
                 .addContainerGap())
         );
 
+        staminaRecovBtn.setText("Recover");
+        staminaRecovBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staminaRecovBtnActionPerformed(evt);
+            }
+        });
+        pnlPlayerData.add(staminaRecovBtn, new java.awt.GridBagConstraints());
+
+        pnlPlayer.add(pnlPlayerData, java.awt.BorderLayout.WEST);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -364,6 +375,41 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         movePlayerPosition(evt);
     }//GEN-LAST:event_listInventoryKeyReleased
 
+    //The action button is used to increase player's stamina after count
+    //at least 5 or more Kiwis
+    private void staminaRecovBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staminaRecovBtnActionPerformed
+        // TODO add your handling code here:
+        if (this.game.getKiwiCount() >= 5) {//If the kiwi is counted about 5 or more,
+            //it will increase the stamina by 50%
+
+            
+            PromptIncreaseStaminaDialog promptstamina = new PromptIncreaseStaminaDialog();
+            promptstamina.setNumKiwi(Integer.parseInt(this.txtKiwisCounted.getText()));
+            promptstamina.setGame(game);
+            promptstamina.setStamina(progPlayerStamina.getValue());
+            promptstamina.setJframe(this);
+            promptstamina.setLblKiwiCount(txtKiwisCounted);
+            promptstamina.setStaminaProgress(progPlayerStamina);
+            promptstamina.setVisible(true);
+            
+            txtKiwisCounted.setText(Integer.toString(game.getKiwiCount()));
+            progPlayerStamina.setValue(new Double(game.getPlayer().getStaminaLevel()).intValue());
+        }else if(this.game.getKiwiCount() < 5 || this.game.getKiwiCount() == 0){//Otherwise, it should display the message where the num
+            //of kiwi is not enough.
+            NotEnoughCountedKiwiDialog notenough = new NotEnoughCountedKiwiDialog(this);
+            notenough.setVisible(true);
+        }
+    }//GEN-LAST:event_staminaRecovBtnActionPerformed
+
+    private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
+        Object obj = listObjects.getSelectedValue();
+        ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) obj, this);
+        actPop.setIconForJLableImage();
+        actPop.setActivityTextArea(ActionType.COLLECT);
+        actPop.setVisible(true);
+        game.collectItem(obj);
+    }// GEN-LAST:event_btnCollectActionPerformed
+
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDropActionPerformed
         ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) listInventory.getSelectedValue(), this);
         actPop.setIconForJLableImage();
@@ -429,6 +475,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
     private javax.swing.JProgressBar progBackpackSize;
     private javax.swing.JProgressBar progBackpackWeight;
     private javax.swing.JProgressBar progPlayerStamina;
+    private javax.swing.JButton staminaRecovBtn;
     private javax.swing.JLabel txtKiwisCounted;
     private javax.swing.JLabel txtPlayerName;
     private javax.swing.JLabel txtPredatorsLeft;

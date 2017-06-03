@@ -8,6 +8,8 @@ package nz.ac.aut.ense701.gui;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.*;
 import nz.ac.aut.ense701.gameModel.ActionType;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.gameModel.Kiwi;
@@ -35,6 +37,9 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         this.occupants = game.getIsland().getOccupants(position);
         initComponents();
     }
+
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -437,11 +442,13 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // Re-enable the main gui window after the current window is closed
+
         Main.gui.setEnabled(true);
         // Get the focus after the current window is closed.
         Main.gui.requestFocus();
         // Make the pnlIsland to get the focus to listen for the subsequent key release event
         Main.gui.getPnlIsland().requestFocusInWindow();
+        
     }//GEN-LAST:event_formWindowClosed
 
     /**

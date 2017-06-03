@@ -211,6 +211,15 @@ public class Game {
     public int getKiwiCount() {
         return kiwiCount;
     }
+    
+     /**
+     * Decrease kiwicount by 5 after increase stamina by 50%
+     *
+     * 
+     */
+    public void decreaseKiwiCount(){
+        this.kiwiCount -= 5;
+    }
 
     /**
      * How many predators are left?

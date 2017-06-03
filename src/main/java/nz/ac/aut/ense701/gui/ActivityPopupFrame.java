@@ -114,7 +114,7 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Activity Message");
         setAlwaysOnTop(true);
-        setLocation(new java.awt.Point(500, 200));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -168,6 +168,7 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         this.dispose();
         this.jFrame.setEnabled(true);
+        Main.gui.getPnlIsland().requestFocusInWindow();
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
