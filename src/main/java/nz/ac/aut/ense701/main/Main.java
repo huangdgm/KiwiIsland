@@ -32,7 +32,7 @@ public class Main {
             @Override
             public void run() {
                 csf.setVisible(true);
-                
+
                 while (csf.isShowing()) {
                     try {
                         Thread.sleep(100);
@@ -42,7 +42,7 @@ public class Main {
                 }
             }
         });
-        
+
         // The thread t2 checks the user selection and display the main GUI window
         Thread t2 = new Thread(new Runnable() {
             @Override
@@ -52,16 +52,16 @@ public class Main {
                 }
             }
         });
-        
+
         t1.start();
-        
+
         // Only after the user selection will the main GUI window appears
         try {
             t1.join();
         } catch (InterruptedException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         t2.start();
     }
 }

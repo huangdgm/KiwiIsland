@@ -415,6 +415,19 @@ public class GameTest extends junit.framework.TestCase {
     }
 
     @Test
+    public void testGetKiwiCountAfterConsumingKiwi() {
+
+    }
+
+    @Test
+    public void testDecreaseKiwiCountAfterConsumingKiwi() {
+        game.setKiwiCount(7);
+        game.decreaseKiwiCount();
+
+        assertEquals(2, game.getKiwiCount(), 0.01);
+    }
+
+    @Test
     public void testCanScanWikiDescriptionFromIslandDataFile() {
         // The string format in the island data file
         String wikiDescription = "The first line of the wiki description.\n"

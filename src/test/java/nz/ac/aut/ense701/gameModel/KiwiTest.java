@@ -51,6 +51,5 @@ public class KiwiTest {
     @Test
     public void testGetStringRepresentation() {
         assertEquals("K", kiwi.getStringRepresentation());
-    }
-    
+    }    
 }

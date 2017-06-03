@@ -19,6 +19,13 @@ import nz.ac.aut.ense701.gui.ActivityPopupFrame;
  */
 public class Game {
 
+    /**
+     * @param kiwiCount the kiwiCount to set
+     */
+    public void setKiwiCount(int kiwiCount) {
+        this.kiwiCount = kiwiCount;
+    }
+
     //Constants shared with UI to provide player data
     public static final int STAMINA_INDEX = 0;
     public static final int MAXSTAMINA_INDEX = 1;
@@ -30,9 +37,9 @@ public class Game {
     /**
      * A new instance of Kiwi island that reads data from "IslandData.txt".
      */
-    public Game() {        
+    public Game() {
         eventListeners = new HashSet<GameEventListener>();
-        
+
         createNewGame();
     }
 
@@ -43,7 +50,7 @@ public class Game {
         totalPredators = 0;
         totalKiwis = 0;
         predatorsTrapped = 0;
-        kiwiCount = 0;
+        setKiwiCount(0);
         initialiseIslandFromFile("IslandData.txt");
         drawIsland();
         state = GameState.PLAYING;
@@ -56,7 +63,7 @@ public class Game {
     /**
      * *********************************************************************************************************************
      * Accessor methods for game data
-    ***********************************************************************************************************************
+     * **********************************************************************************************************************
      */
     /**
      * Get number of rows on island
@@ -151,7 +158,7 @@ public class Game {
      */
     public boolean isVisible(int row, int column) {
         return island.isVisible(new Position(island, row, column));
-        
+
     }
 
     /**
@@ -198,9 +205,9 @@ public class Game {
         playerValues[WEIGHT_INDEX] = (int) player.getCurrentBackpackWeight();
         playerValues[MAXSIZE_INDEX] = (int) player.getMaximumBackpackSize();
         playerValues[SIZE_INDEX] = (int) player.getCurrentBackpackSize();
-        
+
         return playerValues;
-        
+
     }
 
     /**
@@ -211,14 +218,12 @@ public class Game {
     public int getKiwiCount() {
         return kiwiCount;
     }
-    
-     /**
+
+    /**
      * Decrease kiwicount by 5 after increase stamina by 50%
-     *
-     * 
      */
-    public void decreaseKiwiCount(){
-        this.kiwiCount -= 5;
+    public void decreaseKiwiCount() {
+        this.setKiwiCount(this.kiwiCount - 5);
     }
 
     /**
@@ -271,7 +276,7 @@ public class Game {
     /**
      * Draws the island grid to standard output.
      */
-    public void drawIsland() {        
+    public void drawIsland() {
         island.draw();
     }
 
@@ -328,7 +333,7 @@ public class Game {
                 } else {
                     result = false;
                 }
-            }            
+            }
         }
         return result;
     }
@@ -374,7 +379,7 @@ public class Game {
     /**
      * *************************************************************************************************************
      * Mutator Methods
-    ***************************************************************************************************************
+     * **************************************************************************************************************
      */
     /**
      * Picks up an item at the current position of the player Ignores any
@@ -411,7 +416,7 @@ public class Game {
                 notifyGameEventListeners();
             } else {
                 // grid square is full: player has to take what back
-                player.collect(item);                
+                player.collect(item);
             }
         }
         return success;
@@ -423,7 +428,7 @@ public class Game {
      * @param item to use
      * @return true if the item has been used, false if not
      */
-    public boolean useItem(Object item) {        
+    public boolean useItem(Object item) {
         boolean success = false;
         if (item instanceof Food && player.hasItem((Food) item)) //Player east food to increase stamina
         {
@@ -438,7 +443,7 @@ public class Game {
         } else if (item instanceof Tool) {
             Tool tool = (Tool) item;
             if (tool.isTrap() && !tool.isBroken()) {
-                success = trapPredator();                
+                success = trapPredator();
             } else if (tool.isScrewdriver())// Use screwdriver (to fix trap)
             {
                 if (player.hasTrap()) {
@@ -489,8 +494,8 @@ public class Game {
 
             // Is there a hazard?
             checkForHazard();
-            
-            updateGameState();            
+
+            updateGameState();
         }
         return successfulMove;
     }
@@ -516,7 +521,7 @@ public class Game {
     /**
      * *******************************************************************************************************************************
      * Private methods
-     ********************************************************************************************************************************
+     * *******************************************************************************************************************************
      */
     /**
      * Used after player actions to update game state. Applies the Win/Lose
@@ -572,7 +577,7 @@ public class Game {
      */
     private void setPlayerMessage(String message) {
         playerMessage = message;
-        
+
     }
 
     /**
@@ -583,7 +588,7 @@ public class Game {
     private boolean playerCanMove() {
         return (isPlayerMovePossible(MoveDirection.NORTH) || isPlayerMovePossible(MoveDirection.SOUTH)
                 || isPlayerMovePossible(MoveDirection.EAST) || isPlayerMovePossible(MoveDirection.WEST));
-        
+
     }
 
     /**
@@ -601,7 +606,7 @@ public class Game {
             island.removeOccupant(current, occupant);
             predatorsTrapped++;
         }
-        
+
         return hadPredator;
     }
 
@@ -687,7 +692,7 @@ public class Game {
 
             // read and setup the occupants
             setUpOccupants(input);
-            
+
             input.close();
         } catch (FileNotFoundException e) {
             System.err.println("Unable to find data file '" + fileName + "'");
@@ -725,7 +730,7 @@ public class Game {
         double playerMaxStamina = input.nextDouble();
         double playerMaxBackpackWeight = input.nextDouble();
         double playerMaxBackpackSize = input.nextDouble();
-        
+
         Position pos = new Position(island, playerPosRow, playerPosCol);
         player = new Player(pos, playerName,
                 playerMaxStamina,
@@ -740,16 +745,16 @@ public class Game {
      */
     private void setUpOccupants(Scanner input) {
         int numItems = input.nextInt();
-        
+
         for (int i = 0; i < numItems; i++) {
             String occType = input.next();
-            String occName = input.next();            
+            String occName = input.next();
             String occDesc = input.next();
             int occRow = input.nextInt();
             int occCol = input.nextInt();
             Position occPos = new Position(island, occRow, occCol);
             Occupant occupant = null;
-            
+
             if (occType.equals("T")) {
                 double weight = input.nextDouble();
                 double size = input.nextDouble();
@@ -771,35 +776,35 @@ public class Game {
             } else if (occType.equals("F")) {
                 occupant = new Fauna(occPos, occName, occDesc, scanWikiDescription(input));
             }
-            
+
             if (occupant != null) {
                 island.addOccupant(occPos, occupant);
             }
         }
     }
-    
+
     public String scanWikiDescription(Scanner input) {
         // Read from the first line of the wiki description
         String nextLine = input.nextLine();
         // Initialize the wiki description string
         String wikiDescription = "";
-        
+
         if (nextLine.endsWith("[The end]")) {
             wikiDescription += nextLine;
         } else {
-            do {                
+            do {
                 wikiDescription += nextLine;
                 wikiDescription += "\n\n";
                 nextLine = input.nextLine();
             } while (!nextLine.endsWith("[The end]"));
-            
+
             wikiDescription += nextLine;
         }
-        
+
         // Remove the leading comma and the two new line character of the wiki description
         return wikiDescription.substring(3);
     }
-    
+
     private Island island;
     private Player player;
     private GameState state;
@@ -808,11 +813,11 @@ public class Game {
     private int totalKiwis;
     private int predatorsTrapped;
     private Set<GameEventListener> eventListeners;
-    
+
     private final double MIN_REQUIRED_CATCH = 0.8;
-    
+
     private String winMessage = "";
     private String loseMessage = "";
-    private String playerMessage = "";    
-    
+    private String playerMessage = "";
+
 }
