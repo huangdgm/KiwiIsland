@@ -5,12 +5,12 @@
  */
 package nz.ac.aut.ense701.gui;
 
-import java.awt.HeadlessException;
 import javax.swing.*;
 import nz.ac.aut.ense701.gameModel.Game;
 import nz.ac.aut.ense701.main.Main;
 
 /**
+ * This window is designed to prompt the user whether to increase the stamina.
  *
  * @author ThiEric
  */
@@ -19,7 +19,6 @@ public class PromptIncreaseStaminaDialog extends javax.swing.JFrame {
     /**
      * Creates new form PromptIncreaseStaminaDialog
      */
-    
     private int numKiwi;
     private double stamina;
     private Game game;
@@ -42,8 +41,7 @@ public class PromptIncreaseStaminaDialog extends javax.swing.JFrame {
     public void setStamina(double stamina) {
         this.stamina = stamina;
     }
-    
-    
+
     public PromptIncreaseStaminaDialog() {
         initComponents();
     }
@@ -79,11 +77,17 @@ public class PromptIncreaseStaminaDialog extends javax.swing.JFrame {
     public void setStaminaProgress(JProgressBar staminaProgress) {
         this.staminaProgress = staminaProgress;
     }
-    
-    
 
+    /**
+     * Construct the dialog instance.
+     *
+     * @param numKiwi
+     * @param stamina
+     * @param jframe
+     * @param game
+     */
     public PromptIncreaseStaminaDialog(int numKiwi, double stamina, JFrame jframe,
-                Game game) {
+            Game game) {
         initComponents();
         this.numKiwi = numKiwi;
         this.stamina = stamina;
@@ -91,8 +95,6 @@ public class PromptIncreaseStaminaDialog extends javax.swing.JFrame {
         this.game = game;
         this.jframe.setEnabled(false);
     }
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,7 +121,7 @@ public class PromptIncreaseStaminaDialog extends javax.swing.JFrame {
         });
 
         messagelbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        messagelbl.setText("Do you want to increase your stamina by 50%?");
+        messagelbl.setText("Want to trade 5 kiwis for increasing your stamina by 50%?");
 
         acceptBtn.setText("Accept");
         acceptBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -140,26 +142,27 @@ public class PromptIncreaseStaminaDialog extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(messagelbl)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(messagelbl))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(acceptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(cancelBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(acceptBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelBtn1)
-                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(messagelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(acceptBtn)
-                    .addComponent(cancelBtn1))
-                .addGap(29, 29, 29))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(acceptBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(cancelBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -174,15 +177,21 @@ public class PromptIncreaseStaminaDialog extends javax.swing.JFrame {
         Main.gui.getPnlIsland().requestFocusInWindow();
     }//GEN-LAST:event_formWindowClosing
 
-    //The accept button is used to increase the stamina and 
-    //update the kiwi count label and stamina progress bar.
+    /**
+     * The accept button is used to increase the stamina and update the kiwi
+     * count label and stamina progress bar.
+     *
+     * @param evt
+     */
     private void acceptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBtnActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        this.game.getPlayer().increaseStamina(this.stamina * 0.5 + this.stamina);
+        this.game.getPlayer().increaseStamina(50);
         this.game.decreaseKiwiCount();
         this.staminaProgress.setValue(new Double(this.game.getPlayer().getStaminaLevel()).intValue());
         this.lblKiwiCount.setText(Integer.toString(game.getKiwiCount()));
+
+        // Re-enable the main gui window after the current window is closed
         Main.gui.setEnabled(true);
         // Get the focus after the current window is closed.
         Main.gui.requestFocus();
@@ -190,8 +199,12 @@ public class PromptIncreaseStaminaDialog extends javax.swing.JFrame {
         Main.gui.getPnlIsland().requestFocusInWindow();
     }//GEN-LAST:event_acceptBtnActionPerformed
 
-    //Press cancel to not accept to increase stamina,
-    //but it will display the guide how to increase stamina.
+    /**
+     * Press cancel to not accept to increase stamina, but it will display the
+     * guide how to increase stamina.
+     *
+     * @param evt
+     */
     private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
         // TODO add your handling code here:
         this.jframe.setEnabled(true);
@@ -205,11 +218,6 @@ public class PromptIncreaseStaminaDialog extends javax.swing.JFrame {
         //When this dialog pop up, it should disable the main Frame.
         this.jframe.setEnabled(false);
     }//GEN-LAST:event_formWindowOpened
-
-    /**
-     * @param args the command line arguments
-     */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptBtn;

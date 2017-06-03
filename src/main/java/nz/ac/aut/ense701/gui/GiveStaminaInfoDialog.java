@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import nz.ac.aut.ense701.main.Main;
 
 /**
+ * This window is designed to give hints to player on how to increase the
+ * stamina by consuming the counted kiwis.
  *
  * @author ThiEric
  */
@@ -17,14 +19,13 @@ public class GiveStaminaInfoDialog extends javax.swing.JDialog {
     /**
      * Creates new form GiveStaminaInfoDialog
      */
-    
     private JFrame jframe;
-    
+
     public GiveStaminaInfoDialog() {
         initComponents();
         setLocation(300, 400);
     }
-    
+
     public GiveStaminaInfoDialog(JFrame jframe) {
         this.jframe = jframe;
         initComponents();
@@ -39,8 +40,6 @@ public class GiveStaminaInfoDialog extends javax.swing.JDialog {
     public void setJframe(JFrame jframe) {
         this.jframe = jframe;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,7 +61,7 @@ public class GiveStaminaInfoDialog extends javax.swing.JDialog {
             }
         });
 
-        introduclbl.setText("<html>\n<h1 style=\"text-align: center;\">How to recover your stamina</h1>\n<p style=\"text-align: center;\">\nTo recover your stamina, you must collect at least 5 or more Kiwis.\nAfter that, click \"Recover\" button to increase your stamina by 50%.\n</p>\n</html>");
+        introduclbl.setText("<html> <h1 style=\"text-align: center;\">How to recover your stamina</h1> <p style=\"text-align: center;\"> To recover your stamina, you must collect at least 5 or more Kiwis. After that, click \"Increase Stamina\" button to increase your stamina by 50%. </p> </html>");
 
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -97,9 +96,14 @@ public class GiveStaminaInfoDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * By clicking the 'ok' button, it will re-enable the main frame.
+     *
+     * @param evt
+     */
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        // TODO add your handling code here:
         this.dispose();
+
         Main.gui.setEnabled(true);
         // Get the focus after the current window is closed.
         Main.gui.requestFocus();
@@ -107,19 +111,18 @@ public class GiveStaminaInfoDialog extends javax.swing.JDialog {
         Main.gui.getPnlIsland().requestFocusInWindow();
     }//GEN-LAST:event_okBtnActionPerformed
 
+    /**
+     * By closing the window, it will re-enable the main frame.
+     *
+     * @param evt
+     */
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
         Main.gui.setEnabled(true);
         // Get the focus after the current window is closed.
         Main.gui.requestFocus();
         // Make the pnlIsland to get the focus to listen for the subsequent key release event
         Main.gui.getPnlIsland().requestFocusInWindow();
     }//GEN-LAST:event_formWindowClosing
-
-    /**
-     * @param args the command line arguments
-     */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel introduclbl;

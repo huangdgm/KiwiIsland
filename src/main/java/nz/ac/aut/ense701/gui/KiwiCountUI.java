@@ -19,7 +19,7 @@ import nz.ac.aut.ense701.main.Main;
  * @version July 2011
  */
 public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener {
-    
+
     /**
      * Creates a GUI for the KiwiIsland game.
      *
@@ -43,7 +43,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
     @Override
     public void gameStateChanged() {
         update();
-        
+
         // check for "game over" or "game won"
         if (game.getState() == GameState.LOST) {
             JOptionPane.showMessageDialog(this, game.getLoseMessage(), "Game over!", JOptionPane.INFORMATION_MESSAGE);
@@ -123,7 +123,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         lblKiwisCounted = new javax.swing.JLabel();
         txtKiwisCounted = new javax.swing.JLabel();
         txtPredatorsLeft = new javax.swing.JLabel();
-        staminaRecovBtn = new javax.swing.JButton();
+        staminaRecoveryBtn = new javax.swing.JButton();
         javax.swing.JPanel pnlInventory = new javax.swing.JPanel();
         javax.swing.JScrollPane scrlInventory = new javax.swing.JScrollPane();
         listInventory = new javax.swing.JList();
@@ -186,6 +186,13 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 
         txtPredatorsLeft.setText("P");
 
+        staminaRecoveryBtn.setText("Increase Stamina");
+        staminaRecoveryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staminaRecoveryBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlPlayerDataLayout = new javax.swing.GroupLayout(pnlPlayerData);
         pnlPlayerData.setLayout(pnlPlayerDataLayout);
         pnlPlayerDataLayout.setHorizontalGroup(
@@ -218,16 +225,19 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
                                 .addGroup(pnlPlayerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtKiwisCounted)
                                     .addComponent(txtPredatorsLeft))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(staminaRecoveryBtn)))))
                 .addContainerGap())
         );
         pnlPlayerDataLayout.setVerticalGroup(
             pnlPlayerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPlayerDataLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(1, 1, 1)
                 .addGroup(pnlPlayerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPlayerName)
-                    .addComponent(txtPlayerName, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPlayerDataLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(txtPlayerName)))
                 .addGroup(pnlPlayerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlPlayerDataLayout.createSequentialGroup()
                         .addGap(21, 21, 21)
@@ -239,7 +249,7 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
                 .addGroup(pnlPlayerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBackpackWeight)
                     .addComponent(progBackpackWeight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(pnlPlayerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(progBackpackSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBackpackSize))
@@ -247,10 +257,11 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
                 .addGroup(pnlPlayerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPredators)
                     .addComponent(txtPredatorsLeft))
-                .addGap(27, 27, 27)
+                .addGap(23, 23, 23)
                 .addGroup(pnlPlayerDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblKiwisCounted)
-                    .addComponent(txtKiwisCounted)))
+                    .addComponent(txtKiwisCounted)
+                    .addComponent(staminaRecoveryBtn)))
         );
 
         javax.swing.GroupLayout pnlPlayerLayout = new javax.swing.GroupLayout(pnlPlayer);
@@ -267,16 +278,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
                 .addComponent(pnlPlayerData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        staminaRecovBtn.setText("Recover");
-        staminaRecovBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                staminaRecovBtnActionPerformed(evt);
-            }
-        });
-        pnlPlayerData.add(staminaRecovBtn, new java.awt.GridBagConstraints());
-
-        pnlPlayer.add(pnlPlayerData, java.awt.BorderLayout.WEST);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -375,14 +376,15 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         movePlayerPosition(evt);
     }//GEN-LAST:event_listInventoryKeyReleased
 
-    //The action button is used to increase player's stamina after count
-    //at least 5 or more Kiwis
-    private void staminaRecovBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staminaRecovBtnActionPerformed
-        // TODO add your handling code here:
+    /**
+     * This method updates the player's stamina number and the related GUI
+     * components.
+     *
+     * @param evt
+     */
+    private void staminaRecoveryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staminaRecoveryBtnActionPerformed
         if (this.game.getKiwiCount() >= 5) {//If the kiwi is counted about 5 or more,
             //it will increase the stamina by 50%
-
-            
             PromptIncreaseStaminaDialog promptstamina = new PromptIncreaseStaminaDialog();
             promptstamina.setNumKiwi(Integer.parseInt(this.txtKiwisCounted.getText()));
             promptstamina.setGame(game);
@@ -391,25 +393,21 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
             promptstamina.setLblKiwiCount(txtKiwisCounted);
             promptstamina.setStaminaProgress(progPlayerStamina);
             promptstamina.setVisible(true);
-            
+
             txtKiwisCounted.setText(Integer.toString(game.getKiwiCount()));
             progPlayerStamina.setValue(new Double(game.getPlayer().getStaminaLevel()).intValue());
-        }else if(this.game.getKiwiCount() < 5 || this.game.getKiwiCount() == 0){//Otherwise, it should display the message where the num
-            //of kiwi is not enough.
+        } else if (this.game.getKiwiCount() < 5 || this.game.getKiwiCount() == 0) {
+            //Otherwise, it should display the message where the num of kiwi is not enough.
             NotEnoughCountedKiwiDialog notenough = new NotEnoughCountedKiwiDialog(this);
             notenough.setVisible(true);
         }
-    }//GEN-LAST:event_staminaRecovBtnActionPerformed
+    }//GEN-LAST:event_staminaRecoveryBtnActionPerformed
 
-    private void btnCollectActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCollectActionPerformed
-        Object obj = listObjects.getSelectedValue();
-        ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) obj, this);
-        actPop.setIconForJLableImage();
-        actPop.setActivityTextArea(ActionType.COLLECT);
-        actPop.setVisible(true);
-        game.collectItem(obj);
-    }// GEN-LAST:event_btnCollectActionPerformed
-
+    /**
+     * Drop the selected item in the list inventory.
+     *
+     * @param evt
+     */
     private void btnDropActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDropActionPerformed
         ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) listInventory.getSelectedValue(), this);
         actPop.setIconForJLableImage();
@@ -418,6 +416,11 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         game.dropItem(listInventory.getSelectedValue());
     }// GEN-LAST:event_btnDropActionPerformed
 
+    /**
+     * Use the selected item in the list inventory.
+     *
+     * @param evt
+     */
     private void btnUseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUseActionPerformed
         ActivityPopupFrame actPop = new ActivityPopupFrame((Occupant) listInventory.getSelectedValue(), this);
         actPop.setIconForJLableImage();
@@ -465,24 +468,6 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         getPnlIsland().requestFocusInWindow();
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDrop;
-    private javax.swing.JButton btnUse;
-    private javax.swing.JLabel lblKiwisCounted;
-    private javax.swing.JLabel lblPredators;
-    private javax.swing.JList listInventory;
-    private javax.swing.JPanel pnlIsland;
-    private javax.swing.JProgressBar progBackpackSize;
-    private javax.swing.JProgressBar progBackpackWeight;
-    private javax.swing.JProgressBar progPlayerStamina;
-    private javax.swing.JButton staminaRecovBtn;
-    private javax.swing.JLabel txtKiwisCounted;
-    private javax.swing.JLabel txtPlayerName;
-    private javax.swing.JLabel txtPredatorsLeft;
-    // End of variables declaration//GEN-END:variables
-
-    private Game game;
-
     /**
      * @return the pnlIsland
      */
@@ -490,6 +475,11 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
         return pnlIsland;
     }
 
+    /**
+     * Move the player's position by detecting the key pressed.
+     *
+     * @param evt
+     */
     private void movePlayerPosition(KeyEvent evt) {
         switch (KeyEvent.getKeyText(evt.getKeyCode())) {
             case "Left":
@@ -508,4 +498,22 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
 
         update();
     }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDrop;
+    private javax.swing.JButton btnUse;
+    private javax.swing.JLabel lblKiwisCounted;
+    private javax.swing.JLabel lblPredators;
+    private javax.swing.JList listInventory;
+    private javax.swing.JPanel pnlIsland;
+    private javax.swing.JProgressBar progBackpackSize;
+    private javax.swing.JProgressBar progBackpackWeight;
+    private javax.swing.JProgressBar progPlayerStamina;
+    private javax.swing.JButton staminaRecoveryBtn;
+    private javax.swing.JLabel txtKiwisCounted;
+    private javax.swing.JLabel txtPlayerName;
+    private javax.swing.JLabel txtPredatorsLeft;
+    // End of variables declaration//GEN-END:variables
+
+    private Game game;
 }

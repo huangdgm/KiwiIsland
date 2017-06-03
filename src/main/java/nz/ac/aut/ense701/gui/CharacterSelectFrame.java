@@ -8,6 +8,8 @@ package nz.ac.aut.ense701.gui;
 import nz.ac.aut.ense701.main.Main;
 
 /**
+ * This window is designed for the player to choose an player icon that will be
+ * displayed on the play island.
  *
  * @author Jayce
  */

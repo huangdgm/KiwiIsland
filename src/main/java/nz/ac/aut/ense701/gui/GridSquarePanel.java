@@ -5,7 +5,6 @@ import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -35,7 +34,6 @@ public class GridSquarePanel extends javax.swing.JPanel {
         this.column = column;
         initComponents();
     }
-
 
     /**
      * Updates the representation of the grid square panel.

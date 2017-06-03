@@ -5,12 +5,12 @@
  */
 package nz.ac.aut.ense701.gui;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.HeadlessException;
 import javax.swing.JFrame;
 import nz.ac.aut.ense701.main.Main;
 
 /**
+ * This window is designed to inform the player that there is not enough counted
+ * kiwis to increase the stamina.
  *
  * @author ThiEric
  */
@@ -21,8 +21,7 @@ public class NotEnoughCountedKiwiDialog extends javax.swing.JFrame {
      */
     private JFrame jframe;
     private int kiwicount;
-    
-    
+
     public JFrame getJframe() {
         return jframe;
     }
@@ -38,22 +37,17 @@ public class NotEnoughCountedKiwiDialog extends javax.swing.JFrame {
     public void setKiwicount(int kiwicount) {
         this.kiwicount = kiwicount;
     }
-    
-    
-    
+
     public NotEnoughCountedKiwiDialog() {
         initComponents();
     }
 
-    public NotEnoughCountedKiwiDialog(JFrame jframe){
+    public NotEnoughCountedKiwiDialog(JFrame jframe) {
         this.jframe = jframe;
         initComponents();
         this.jframe.setEnabled(false);
     }
 
-
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,8 +64,8 @@ public class NotEnoughCountedKiwiDialog extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
 
@@ -83,7 +77,7 @@ public class NotEnoughCountedKiwiDialog extends javax.swing.JFrame {
         });
 
         messagelbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        messagelbl.setText("<html><body>\n<p>Not enough Kiwi. At least you need to collect at least 5 Kiwis.</p>\n</body>\n</html>");
+        messagelbl.setText("<html><body> <p>Not enough Kiwi. You need to count at least 5 Kiwis.</p> </body> </html>");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,38 +90,46 @@ public class NotEnoughCountedKiwiDialog extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(okjBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(149, 149, 149))
+                .addGap(124, 124, 124))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(messagelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(okjBtn)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-//By clickng OK button, it should re-enable the Main Frame.
+
+    /**
+     * By clicking OK button, it will re-enable the Main Frame.
+     *
+     * @param evt
+     */
     private void okjBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okjBtnActionPerformed
         // TODO add your handling code here:
         this.dispose();
         this.jframe.setEnabled(true);
         Main.gui.getPnlIsland().requestFocusInWindow();
     }//GEN-LAST:event_okjBtnActionPerformed
-//When the form is closing, it should enable the main Frame.
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // TODO add your handling code here:
-        this.jframe.setEnabled(true);
-        Main.gui.getPnlIsland().requestFocusInWindow();
-    }//GEN-LAST:event_formWindowClosing
 
     /**
-     * @param args the command line arguments
+     * By closing the window, it will re-enable the main frame.
+     *
+     * @param evt
      */
-
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // Re-enable the main gui window after the current window is closed
+        Main.gui.setEnabled(true);
+        // Get the focus after the current window is closed.
+        Main.gui.requestFocus();
+        // Make the pnlIsland to get the focus to listen for the subsequent key release event
+        Main.gui.getPnlIsland().requestFocusInWindow();
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel messagelbl;

@@ -11,6 +11,8 @@ import nz.ac.aut.ense701.gameModel.Occupant;
 import nz.ac.aut.ense701.main.Main;
 
 /**
+ * This window is designed to give player visual information of the current
+ * activity.
  *
  * @author Thi
  */
@@ -49,6 +51,10 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
         this.jFrame = Jframe;
     }
 
+    /**
+     * Set the icon for the current activity.
+     *
+     */
     public void setIconForJLableImage() {
         switch (this.getOccupant().getName()) {
             case "Kiwi":
@@ -75,6 +81,11 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Set the text for the related activity.
+     *
+     * @param actiontype
+     */
     public void setActivityTextArea(ActionType actiontype) {
         switch (actiontype) {
             case USE:
