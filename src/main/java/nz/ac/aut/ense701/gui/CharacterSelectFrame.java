@@ -15,9 +15,9 @@ import nz.ac.aut.ense701.main.Main;
  */
 public class CharacterSelectFrame extends javax.swing.JFrame {
 
-    public static boolean isIcon1Clicked = false;
-    public static boolean isIcon2Clicked = false;
-    public static boolean isIcon3Clicked = false;
+    static boolean isIcon1Clicked = false;
+    static boolean isIcon2Clicked = false;
+    static boolean isIcon3Clicked = false;
 
     /**
      * Creates new form CharacterSelectFrame

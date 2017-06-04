@@ -200,8 +200,9 @@ public class Player {
      * @return trap or null if player has no trap
      */
     public Tool getTrap() {
-        Tool tool = null;
+        Tool tool;
         Tool trap = null;
+        
         for (Item item : backpack) {
             if (item instanceof Tool) {
                 tool = (Tool) item;

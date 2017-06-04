@@ -1,4 +1,3 @@
-
 package nz.ac.aut.ense701.gameModel;
 
 import org.junit.After;
@@ -12,26 +11,26 @@ import static org.junit.Assert.*;
  * @version 2011
  */
 public class PredatorTest {
+
     private Predator rat;
     private Position position;
     private Island island;
-    
-    
+
     public PredatorTest() {
     }
-    
+
     @Before
     public void setUp() {
-        island = new Island(5,5);
-        position = new Position(island, 4,4);
-        rat = new Predator(position, "Rat", "A norway rat","A wiki description");   
+        island = new Island(5, 5);
+        position = new Position(island, 4, 4);
+        rat = new Predator(position, "Rat", "A norway rat", "A wiki description");
     }
-    
+
     @After
     public void tearDown() {
         island = null;
         position = null;
-        rat = null;   
+        rat = null;
     }
 
     /**
@@ -40,8 +39,11 @@ public class PredatorTest {
     @Test
     public void testGetStringRepresentation() {
         String expResult = "P";
-        String result = rat.getStringRepresentation();
-        assertEquals(expResult, result);
+
+        if (rat != null) {
+            String result = rat.getStringRepresentation();
+            assertEquals(expResult, result);
+        }
     }
-    
+
 }

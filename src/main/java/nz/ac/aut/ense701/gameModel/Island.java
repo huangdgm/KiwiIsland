@@ -221,7 +221,9 @@ public class Island
         if ( success ) // Can fail if square already full or occupant already there
         { 
             //update the occupants address
-            occupant.setPosition(position);
+            if(occupant != null) {
+                occupant.setPosition(position);
+            }
         }
         return success;
     }    
@@ -244,7 +246,9 @@ public class Island
         if ( success )
         {
             //update the occupants address to the "not on island position"
-            occupant.setPosition(Position.NOT_ON_ISLAND);
+            if(occupant != null) {
+                occupant.setPosition(Position.NOT_ON_ISLAND);
+            }
         }
         return success;
     }

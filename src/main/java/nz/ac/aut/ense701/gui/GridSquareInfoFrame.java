@@ -35,7 +35,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
         this.occupants = game.getIsland().getOccupants(position);
         initComponents();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -241,7 +241,7 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
     private void jRadioButtonOccupant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonOccupant1ActionPerformed
         Occupant occupant;
         String wikiDescription;
-        
+
         occupant = occupants[0];
         wikiDescription = occupant.getWikiDescription();
 
@@ -362,6 +362,9 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
                 }
 
                 break;
+
+            default:
+                break;
         }
     }//GEN-LAST:event_jButtonCollectActionPerformed
 
@@ -426,6 +429,8 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
                     uri = setURI(occupants[2]);
                 }
 
+                break;
+            default:
                 break;
         }
 
@@ -531,6 +536,8 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
             case "Broken trap":
                 jLabelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/brokentrap.jpg")));
                 break;
+            default:
+                break;
         }
     }
 
@@ -632,6 +639,8 @@ public class GridSquareInfoFrame extends javax.swing.JFrame {
                 break;
             case "Broken trap":
                 uri = "https://en.wikipedia.org/wiki/Broken_trap";
+                break;
+            default:
                 break;
         }
 

@@ -23,14 +23,12 @@ public class GiveStaminaInfoDialog extends javax.swing.JDialog {
 
     public GiveStaminaInfoDialog() {
         initComponents();
-        setLocation(300, 400);
     }
 
     public GiveStaminaInfoDialog(JFrame jframe) {
         this.jframe = jframe;
         initComponents();
         this.jframe.setEnabled(false);
-        setLocation(300, 400);
     }
 
     public JFrame getJframe() {

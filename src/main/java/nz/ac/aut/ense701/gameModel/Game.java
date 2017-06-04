@@ -528,7 +528,8 @@ public class Game {
      * rules.
      */
     private void updateGameState() {
-        String message = "";
+        String message;
+        
         if (!player.isAlive()) {
             state = GameState.LOST;
             message = "Sorry, you have lost the game. " + this.getLoseMessage();

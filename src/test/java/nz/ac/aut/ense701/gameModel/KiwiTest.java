@@ -11,21 +11,21 @@ import static org.junit.Assert.*;
  * @version 2011
  */
 public class KiwiTest {
-    
+
     private Kiwi kiwi;
     private Position position;
     private Island island;
-    
+
     public KiwiTest() {
     }
-    
+
     @Before
     public void setUp() {
-        island = new Island(5,5);
-        position = new Position(island, 4,4);
-        kiwi = new Kiwi(position, "Kiwi", "A little spotted kiwi","A wiki description");   
+        island = new Island(5, 5);
+        position = new Position(island, 4, 4);
+        kiwi = new Kiwi(position, "Kiwi", "A little spotted kiwi", "A wiki description");
     }
-    
+
     @After
     public void tearDown() {
         island = null;
@@ -35,14 +35,18 @@ public class KiwiTest {
 
     @Test
     public void testCountedNotCounted() {
-        assertFalse("Should not be counted", kiwi.counted());
+        if (kiwi != null) {
+            assertFalse("Should not be counted", kiwi.counted());
+        }
     }
-    
+
     @Test
     public void testCountedIsCounted() {
-        assertFalse("Should not be counted", kiwi.counted());
-        kiwi.count();
-        assertTrue("Should  be counted", kiwi.counted());
+        if (kiwi != null) {
+            assertFalse("Should not be counted", kiwi.counted());
+            kiwi.count();
+            assertTrue("Should  be counted", kiwi.counted());
+        }
     }
 
     /**
@@ -50,6 +54,8 @@ public class KiwiTest {
      */
     @Test
     public void testGetStringRepresentation() {
-        assertEquals("K", kiwi.getStringRepresentation());
-    }    
+        if (kiwi != null) {
+            assertEquals("K", kiwi.getStringRepresentation());
+        }
+    }
 }

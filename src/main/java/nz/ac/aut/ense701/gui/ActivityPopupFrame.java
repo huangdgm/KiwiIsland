@@ -78,6 +78,8 @@ public class ActivityPopupFrame extends javax.swing.JFrame {
             case "Screwdriver":
                 picActivitylbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screwdriver.jpg")));
                 break;
+            default:
+                break;
         }
     }
 

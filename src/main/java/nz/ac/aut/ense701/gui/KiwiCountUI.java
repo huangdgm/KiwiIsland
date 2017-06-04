@@ -494,6 +494,8 @@ public class KiwiCountUI extends javax.swing.JFrame implements GameEventListener
             case "Down":
                 game.playerMove(MoveDirection.SOUTH);
                 break;
+            default:
+                break;
         }
 
         update();
